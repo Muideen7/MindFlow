@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+:root {
+  --background: 0 0% 98%;
+  --foreground: 0 0% 10%;
+}
+
+.dark {
+  --background: 200 10% 6%;
+  --foreground: 0 0% 96%;
+}
+
+/* Tailwind Layer */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Components */
+@layer components {
+  .section {
+    @apply py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .heading {
+    @apply font-display text-3xl md:text-5xl lg:text-7xl font-bold;
+  }
+
+  .subheading {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+
+  .body-text {
+    @apply text-base md:text-lg leading-relaxed;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 bg-light-accent hover:bg-light-accentHover dark:bg-dark-accent dark:hover:bg-dark-accentHover text-white;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 border-2 border-light-accent text-light-accent hover:bg-light-accent hover:text-white dark:border-dark-accent dark:text-dark-accent dark:hover:bg-dark-accent dark:hover:text-white;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-light-accent to-orange-500 dark:from-dark-accent dark:to-orange-400 bg-clip-text text-transparent;
+  }
+
+  .card {
+    @apply bg-light-card dark:bg-dark-card rounded-lg p-6 shadow-lg transition-all duration-300;
+  }
+}
+
+/* Smooth transitions */
+* {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
