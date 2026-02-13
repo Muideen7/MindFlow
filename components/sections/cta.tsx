@@ -92,7 +92,7 @@ export default function Contact() {
             <motion.h2
               custom={0.1}
               variants={fadeUp}
-              className="text-5xl md:text-6xl font-bold leading-tight font-display"
+              className="text-4xl md:text-5xl font-bold leading-tight font-display"
             >
               Let's start a{" "}
               <span className="text-light-accent dark:text-dark-accent italic">

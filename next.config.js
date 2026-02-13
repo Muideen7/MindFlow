@@ -1,9 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
-    domains: [],
+    domains: ["lh3.googleusercontent.com", "api.dicebear.com"],
     unoptimized: false,
+  },
+  onDemandEntries: {
+    maxInactiveAge: 60 * 1000,
+    pagesBufferLength: 5,
+  },
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
   },
 };
 

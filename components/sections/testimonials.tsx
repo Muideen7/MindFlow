@@ -68,7 +68,7 @@ export default function Testimonials() {
           >
             TESTIMONIALS
           </motion.div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight font-display mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold leading-tight font-display mb-6">
             Loved by teams{" "}
             <span className="text-light-accent dark:text-dark-accent italic">
               everywhere

@@ -11,22 +11,36 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "framer-motion": "^11.0.0",
-    "lucide-react": "^0.344.0",
+    "@auth/prisma-adapter": "^2.7.4",
+    "@hookform/resolvers": "^3.9.0",
+    "@prisma/client": "^6.3.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "framer-motion": "^11.11.17",
+    "lucide-react": "^0.460.0",
     "next": "^16.1.6",
-    "next-themes": "^0.2.1",
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "next-auth": "^4.24.13",
+    "next-themes": "^0.4.3",
+    "prisma": "^6.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.53.2",
+    "recharts": "^3.7.0",
+    "uuid": "^11.0.3",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/node": "^20.11.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "autoprefixer": "^10.4.0",
-    "eslint": "^9.0.0",
+    "@types/node": "^22.10.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.15.0",
     "eslint-config-next": "^16.1.6",
-    "postcss": "^8.4.0",
-    "tailwindcss": "^3.4.0",
-    "typescript": "^5.3.0"
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.7.2"
+  },
+  "overrides": {
+    "@auth/core": "0.34.3"
   }
 }

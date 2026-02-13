@@ -68,7 +68,7 @@ export default function Footer() {
     <footer className="bg-light-bg dark:bg-dark-bg border-t border-light-border dark:border-dark-border">
       <div className="section-container py-12 md:py-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12 mb-12">
           {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

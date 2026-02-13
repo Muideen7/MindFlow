@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 
@@ -48,7 +49,7 @@ export default function Hero() {
               animate="visible"
               custom={0.1}
               variants={fadeUp}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-light-text dark:text-dark-text text-center lg:text-left"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-semibold mb-6 leading-tight text-light-text dark:text-dark-text text-center lg:text-left"
             >
               Build something{" "}
               <span className="text-light-accent dark:text-dark-accent italic">
@@ -64,7 +65,7 @@ export default function Hero() {
               animate="visible"
               custom={0.2}
               variants={fadeUp}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-light-text/70 dark:text-dark-text/70 mb-10 leading-relaxed text-center lg:text-left"
+              className="text-base sm:text-lg md:text-lg lg:text-xl text-light-text/70 dark:text-dark-text/70 mb-10 leading-relaxed text-center lg:text-left"
             >
               Nexus brings your team together with powerful collaboration tools,
               seamless workflows, and beautiful design. Work smarter, not
@@ -79,16 +80,22 @@ export default function Hero() {
               variants={fadeUp}
               className="flex flex-col sm:flex-row gap-4 mb-12 justify-center lg:justify-start"
             >
-              <button className="btn-primary group w-full sm:w-auto">
+              <Link
+                href="/login"
+                className="btn-primary group w-full sm:w-auto flex items-center justify-center"
+              >
                 Start for Free
                 <ArrowRight
                   size={20}
                   className="ml-2 group-hover:translate-x-1 transition-transform"
                 />
-              </button>
-              <button className="btn-secondary w-full sm:w-auto">
+              </Link>
+              <a
+                href="#contact"
+                className="btn-secondary w-full sm:w-auto text-center"
+              >
                 Learn More
-              </button>
+              </a>
             </motion.div>
 
             {/* Trust Banner */}

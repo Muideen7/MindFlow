@@ -8,6 +8,7 @@ interface ThemeProviderProps {
   attribute?: string;
   defaultTheme?: string;
   enableSystem?: boolean;
+  suppressHydrationWarning?: boolean;
 }
 
 export function ThemeProvider({
@@ -15,13 +16,16 @@ export function ThemeProvider({
   attribute = "class",
   defaultTheme = "system",
   enableSystem = true,
+  suppressHydrationWarning = true,
 }: ThemeProviderProps) {
   return (
     <NextThemesProvider
       attribute={attribute}
       defaultTheme={defaultTheme}
       enableSystem={enableSystem}
-      disableTransitionOnChange
+      disableTransitionOnChange={false}
+      suppressHydrationWarning={suppressHydrationWarning}
+      storageKey="nexus-theme"
     >
       {children}
     </NextThemesProvider>
