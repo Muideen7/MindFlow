@@ -17,6 +17,8 @@ dist
 # Misc
 .DS_Store
 *.pem
+client_secret.json
+client-Secret.json
 
 # Debug
 npm-debug.log*
@@ -36,3 +38,9 @@ yarn-error.log*
 *.swp
 *.swo
 *~
+
+# Ignore all .md files
+*.md
+
+# But keep README.md
+!README.md
