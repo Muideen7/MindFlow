@@ -2,8 +2,16 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ["lh3.googleusercontent.com", "api.dicebear.com"],
-    unoptimized: false,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "api.dicebear.com",
+      },
+    ],
     formats: ["image/avif", "image/webp"],
   },
   onDemandEntries: {
@@ -33,10 +41,6 @@ const nextConfig = {
           {
             key: "Referrer-Policy",
             value: "strict-origin-when-cross-origin",
-          },
-          {
-            key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()",
           },
         ],
       },
