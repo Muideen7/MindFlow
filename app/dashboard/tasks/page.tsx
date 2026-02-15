@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Plus, X, ChevronRight, Flag } from "lucide-react";
-import { updateTaskStatus } from "@/app/dashboard/actions";
 
 interface Task {
   id: string;
@@ -72,13 +71,12 @@ export default function TasksPage() {
     );
   };
 
-  const handleStatusChange = async (taskId: string, newStatus: string) => {
+  const handleStatusChange = (taskId: string, newStatus: string) => {
     setTasks(
       tasks.map((t) =>
         t.id === taskId ? { ...t, status: newStatus as any } : t
       )
     );
-    await updateTaskStatus(taskId, newStatus);
   };
 
   return (
