@@ -136,13 +136,6 @@ export default function Footer() {
           {/* Copyright & Built By */}
           <div className="flex flex-col items-center md:flex-row md:items-center gap-4 text-sm text-light-text/70 dark:text-dark-text/70 text-center md:text-left">
             <p>© {currentYear} Nexus. All rights reserved.</p>
-            <span className="hidden md:block">•</span>
-            <p>
-              Built with 💖 by{" "}
-              <span className="font-semibold text-light-text dark:text-dark-text">
-                FrontendGeek
-              </span>
-            </p>
           </div>
 
           {/* Legal Links */}

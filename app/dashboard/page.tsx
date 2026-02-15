@@ -32,7 +32,7 @@ export default function DashboardPage() {
 
       {/* Stat Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-light-bg-secondary dark:bg-white/5 backdrop-blur-md border border-light-border dark:border-white/10 rounded-lg p-6">
+        <div className="bg-yellow-500/10 dark:bg-yellow-500/5 backdrop-blur-md border-2 border-yellow-400 dark:border-yellow-500/30 rounded-lg p-6">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-light-text/60 dark:text-white/60 text-sm">Active Projects</p>
@@ -43,7 +43,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="bg-light-bg-secondary dark:bg-white/5 backdrop-blur-md border border-light-border dark:border-white/10 rounded-lg p-6">
+        <div className="bg-yellow-500/10 dark:bg-yellow-500/5 backdrop-blur-md border-2 border-yellow-400 dark:border-yellow-500/30 rounded-lg p-6">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-light-text/60 dark:text-white/60 text-sm">Total Tasks</p>
@@ -54,7 +54,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="bg-light-bg-secondary dark:bg-white/5 backdrop-blur-md border border-light-border dark:border-white/10 rounded-lg p-6">
+        <div className="bg-yellow-500/10 dark:bg-yellow-500/5 backdrop-blur-md border-2 border-yellow-400 dark:border-yellow-500/30 rounded-lg p-6">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-light-text/60 dark:text-white/60 text-sm">My Assigned Tasks</p>
@@ -65,7 +65,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="bg-light-bg-secondary dark:bg-white/5 backdrop-blur-md border border-light-border dark:border-white/10 rounded-lg p-6">
+        <div className="bg-yellow-500/10 dark:bg-yellow-500/5 backdrop-blur-md border-2 border-yellow-400 dark:border-yellow-500/30 rounded-lg p-6">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-light-text/60 dark:text-white/60 text-sm">Completed Tasks</p>

@@ -31,7 +31,7 @@ export default function DashboardLayout({
     <div className="flex h-screen bg-light-bg dark:bg-dark-bg transition-colors">
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-light-bg-secondary dark:bg-dark-bg-card border-r border-light-border dark:border-dark-border transform transition-transform duration-300 lg:relative lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-light-bg-secondary dark:bg-dark-bg-card border-r-4 border-yellow-400 dark:border-yellow-500/50 transform transition-transform duration-300 lg:relative lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
