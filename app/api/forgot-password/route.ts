@@ -31,8 +31,8 @@ export async function POST(request: NextRequest) {
     await prisma.user.update({
       where: { email },
       data: {
-        resetToken,
-        resetTokenExpiry,
+        resetToken: resetToken,
+        resetTokenExpiry: resetTokenExpiry,
       },
     });
 

@@ -20,11 +20,10 @@ export function ThemeProvider({
 }: ThemeProviderProps) {
   return (
     <NextThemesProvider
-      attribute={attribute}
+      attribute={attribute as any}
       defaultTheme={defaultTheme}
       enableSystem={enableSystem}
       disableTransitionOnChange={false}
-      suppressHydrationWarning={suppressHydrationWarning}
       storageKey="nexus-theme"
     >
       {children}
