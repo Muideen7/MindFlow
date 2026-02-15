@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
+import { Toast } from "@/components/ui/toast";
 import * as z from "zod";
 
 const signupSchema = z
@@ -26,7 +27,7 @@ type SignupFormData = z.infer<typeof signupSchema>;
 export const SignupForm = memo(function SignupForm() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -40,7 +41,7 @@ export const SignupForm = memo(function SignupForm() {
 
   const onSubmit = async (data: SignupFormData) => {
     setIsLoading(true);
-    setError(null);
+    setToast(null);
 
     try {
       const response = await fetch("/api/register", {
@@ -56,31 +57,29 @@ export const SignupForm = memo(function SignupForm() {
       const result = await response.json();
 
       if (!response.ok) {
-        setError(result.message || "Signup failed");
+        setToast({ message: result.message || "Signup failed", type: "error" });
+        setIsLoading(false);
         return;
       }
 
-      router.push("/dashboard");
+      setToast({ message: "Account created! Redirecting...", type: "success" });
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 1000);
     } catch (err) {
-      setError("An error occurred. Please try again.");
-    } finally {
+      setToast({ message: "An error occurred. Please try again.", type: "error" });
       setIsLoading(false);
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 relative">
-      {error && (
-        <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:w-96 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-sm text-red-600 dark:text-red-400 shadow-lg z-50 flex items-center justify-between">
-          <span>{error}</span>
-          <button
-            type="button"
-            onClick={() => setError(null)}
-            className="ml-2 text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 flex-shrink-0"
-          >
-            ✕
-          </button>
-        </div>
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
       )}
 
       <div>

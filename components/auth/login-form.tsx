@@ -5,18 +5,19 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Loader2, Eye, EyeOff } from "lucide-react";
+import { Toast } from "@/components/ui/toast";
 
 export function LoginForm() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
   const [showPassword, setShowPassword] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setError("");
+    setToast(null);
     setIsLoading(true);
 
     try {
@@ -27,32 +28,29 @@ export function LoginForm() {
       });
 
       if (!result?.ok) {
-        setError(result?.error || "Invalid email or password");
+        setToast({ message: result?.error || "Invalid email or password", type: "error" });
         setIsLoading(false);
         return;
       }
 
-      router.push("/dashboard");
-      router.refresh();
+      setToast({ message: "Login successful! Redirecting...", type: "success" });
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 1000);
     } catch (error) {
-      setError("An error occurred. Please try again.");
+      setToast({ message: "An error occurred. Please try again.", type: "error" });
       setIsLoading(false);
     }
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      {error && (
-        <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:w-96 rounded-xl bg-red-50 border border-red-100 p-4 text-sm text-red-800 shadow-lg z-50 flex items-center justify-between">
-          <span>{error}</span>
-          <button
-            type="button"
-            onClick={() => setError("")}
-            className="ml-2 text-red-800 hover:text-red-900 flex-shrink-0"
-          >
-            ✕
-          </button>
-        </div>
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
       )}
 
       <div className="space-y-1">

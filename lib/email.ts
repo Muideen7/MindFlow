@@ -23,3 +23,12 @@ export async function sendWelcomeEmail(email: string, name: string) {
   console.log(`Welcome email sent to ${email}`);
   // In production, send actual welcome email
 }
+
+export async function sendResetPasswordEmail(
+  email: string,
+  name: string,
+  resetLink: string
+) {
+  console.log(`Password reset email sent to ${email}`);
+  // In production, send actual reset password email
+}
