@@ -3,32 +3,26 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "env": [
-    {
-      "key": "NEXTAUTH_SECRET",
+  "env": {
+    "NEXTAUTH_SECRET": {
       "description": "NextAuth secret for session encryption"
     },
-    {
-      "key": "NEXTAUTH_URL",
+    "NEXTAUTH_URL": {
       "description": "NextAuth URL for authentication callbacks"
     },
-    {
-      "key": "DATABASE_URL",
+    "DATABASE_URL": {
       "description": "MongoDB connection string"
     },
-    {
-      "key": "GOOGLE_CLIENT_ID",
+    "GOOGLE_CLIENT_ID": {
       "description": "Google OAuth client ID"
     },
-    {
-      "key": "GOOGLE_CLIENT_SECRET",
+    "GOOGLE_CLIENT_SECRET": {
       "description": "Google OAuth client secret"
     },
-    {
-      "key": "NEXT_PUBLIC_APP_URL",
+    "NEXT_PUBLIC_APP_URL": {
       "description": "Public app URL for client-side use"
     }
-  ],
+  },
   "headers": [
     {
       "source": "/(.*)",
