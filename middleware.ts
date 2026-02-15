@@ -25,5 +25,4 @@ export default withAuth(
 
 export const config = {
   matcher: ["/dashboard/:path*", "/login", "/signup"],
-  unstable_allowDynamic: ["/node_modules/next-auth/**"],
 };
