@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  // --- ADD THIS SECTION START ---
+  outputFileTracingIncludes: {
+    "/api/auth/**/*": ["./node_modules/.prisma/client/**/*"],
+  },
+  // --- ADD THIS SECTION END ---
   images: {
     remotePatterns: [
       {

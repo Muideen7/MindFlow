@@ -9,6 +9,10 @@ const handler = NextAuth({
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+  },
+  debug: true,
 });
 
 export { handler as GET, handler as POST };
