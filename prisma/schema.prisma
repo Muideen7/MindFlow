@@ -17,6 +17,7 @@ model User {
   emailVerified DateTime?
   image         String?
   password      String?
+  status        String?   @default("Online")
   resetToken    String?   @unique
   resetTokenExpiry DateTime?
   createdAt     DateTime  @default(now())

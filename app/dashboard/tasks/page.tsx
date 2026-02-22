@@ -1,18 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getTasks, createTask } from "@/app/actions/tasks";
-import { Plus, X, Loader2, Calendar, AlertCircle } from "lucide-react";
+import { getTasks, createTask, deleteTask } from "@/app/actions/tasks"; // Added deleteTask
+import { Plus, X, Loader2, Trash2 } from "lucide-react";
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState<any[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   // Form State
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("low");
+  const [priority, setPriority] = useState("medium");
   const [status, setStatus] = useState("todo");
 
   const fetchTasks = async () => {
@@ -24,20 +25,31 @@ export default function TasksPage() {
     fetchTasks();
   }, []);
 
+  const handleDelete = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this task?")) return;
+
+    setIsDeleting(id);
+    try {
+      await deleteTask(id);
+      await fetchTasks(); // Refresh list
+    } catch (error) {
+      console.error("Delete failed", error);
+    } finally {
+      setIsDeleting(null);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
       await createTask({ title, description, priority, status });
       setIsModalOpen(false);
-      // Reset form
       setTitle("");
       setDescription("");
-      setPriority("low");
-      setStatus("todo");
       fetchTasks();
     } catch (error) {
-      console.error("Failed to create task", error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -45,7 +57,6 @@ export default function TasksPage() {
 
   return (
     <div className="space-y-8">
-      {/* Header Section */}
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">Project Tasks</h1>
@@ -62,16 +73,15 @@ export default function TasksPage() {
         </button>
       </div>
 
-      {/* Tasks Table */}
       <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-3xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead className="text-[10px] uppercase font-bold opacity-50 bg-[hsl(var(--muted))] tracking-widest">
               <tr>
                 <th className="px-6 py-4">Task Name</th>
-                <th className="px-6 py-4">Description</th>
                 <th className="px-6 py-4">Priority</th>
-                <th className="px-6 py-4 text-right">Status</th>
+                <th className="px-6 py-4">Status</th>
+                <th className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[hsl(var(--border))]">
@@ -81,20 +91,20 @@ export default function TasksPage() {
                     colSpan={4}
                     className="px-6 py-12 text-center opacity-40 italic"
                   >
-                    No tasks found. Click "Create Task" to get started.
+                    No tasks found.
                   </td>
                 </tr>
               ) : (
                 tasks.map((task) => (
                   <tr
                     key={task.id}
-                    className="hover:bg-orange-50/30 dark:hover:bg-orange-950/10 transition-colors"
+                    className="hover:bg-orange-50/30 dark:hover:bg-orange-950/10 transition-colors group"
                   >
-                    <td className="px-6 py-5 font-bold text-sm">
-                      {task.title}
-                    </td>
-                    <td className="px-6 py-5 text-sm opacity-60 max-w-[300px] truncate">
-                      {task.description || "No description"}
+                    <td className="px-6 py-5">
+                      <p className="font-bold text-sm">{task.title}</p>
+                      <p className="text-xs opacity-50 truncate max-w-[200px]">
+                        {task.description}
+                      </p>
                     </td>
                     <td className="px-6 py-5">
                       <span
@@ -109,16 +119,29 @@ export default function TasksPage() {
                         {task.priority}
                       </span>
                     </td>
-                    <td className="px-6 py-5 text-right">
+                    <td className="px-6 py-5">
                       <span
                         className={`text-[10px] font-bold px-3 py-1 rounded-full uppercase ${
                           task.status === "done"
                             ? "bg-emerald-500 text-white"
-                            : "bg-slate-200 dark:bg-slate-800 opacity-70"
+                            : "bg-slate-200 dark:bg-slate-800"
                         }`}
                       >
                         {task.status}
                       </span>
+                    </td>
+                    <td className="px-6 py-5 text-right">
+                      <button
+                        onClick={() => handleDelete(task.id)}
+                        disabled={isDeleting === task.id}
+                        className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all"
+                      >
+                        {isDeleting === task.id ? (
+                          <Loader2 size={18} className="animate-spin" />
+                        ) : (
+                          <Trash2 size={18} />
+                        )}
+                      </button>
                     </td>
                   </tr>
                 ))

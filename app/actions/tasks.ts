@@ -5,45 +5,56 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 
-export async function getTasks() {
+// Helper to get current user ID
+async function getUserId() {
   const session = await getServerSession(authOptions);
-  // Using email as a fallback if ID isn't mapped, but ID is preferred
-  if (!session?.user?.email) return [];
+  if (!session?.user?.email) return null;
 
   const user = await prisma.user.findUnique({
     where: { email: session.user.email },
+    select: { id: true },
   });
+  return user?.id || null;
+}
 
-  if (!user) return [];
+export async function getTasks() {
+  const userId = await getUserId();
+  if (!userId) return [];
 
   return await prisma.task.findMany({
-    where: { userId: user.id },
+    where: { userId },
     orderBy: { createdAt: "desc" },
   });
 }
 
-export async function createTask(formData: FormData) {
-  const session = await getServerSession(authOptions);
-  if (!session?.user?.email) throw new Error("Unauthorized");
+export async function createTask(data: {
+  title: string;
+  description: string;
+  priority: string;
+  status: string;
+}) {
+  try {
+    const userId = await getUserId();
+    if (!userId) throw new Error("Unauthorized");
 
-  const user = await prisma.user.findUnique({
-    where: { email: session.user.email },
-  });
+    const newTask = await prisma.task.create({
+      data: {
+        title: data.title,
+        description: data.description,
+        priority: data.priority,
+        status: data.status,
+        userId: userId, // CRITICAL: Connect the task to the user
+      },
+    });
 
-  if (!user) throw new Error("User not found");
+    revalidatePath("/dashboard/tasks");
+    revalidatePath("/dashboard");
 
-  await prisma.task.create({
-    data: {
-      title: formData.get("title") as string,
-      description: formData.get("description") as string,
-      status: "todo",
-      priority: (formData.get("priority") as string) || "medium",
-      userId: user.id,
-    },
-  });
-
-  revalidatePath("/dashboard");
-  revalidatePath("/dashboard/tasks");
+    return { success: true, task: newTask };
+  } catch (error) {
+    console.error("Task creation failed:", error);
+    return { success: false, error: "Database error" };
+  }
 }
 
 export async function updateTaskStatus(id: string, status: string) {
