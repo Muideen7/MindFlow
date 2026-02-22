@@ -1,14 +1,18 @@
 "use client";
 
-import { ThemeProvider as NextThemesProvider } from "next-themes";
+import {
+  ThemeProvider as NextThemesProvider,
+  type Attribute,
+} from "next-themes";
 import { ReactNode } from "react";
 
 interface ThemeProviderProps {
-  children: ReactNode;
-  attribute?: string;
+  children: React.ReactNode;
+  attribute?: Attribute | Attribute[];
   defaultTheme?: string;
   enableSystem?: boolean;
-  suppressHydrationWarning?: boolean;
+  disableTransitionOnChange?: boolean; // Keep this here
+  storageKey?: string;
 }
 
 export function ThemeProvider({
@@ -16,14 +20,15 @@ export function ThemeProvider({
   attribute = "class",
   defaultTheme = "system",
   enableSystem = true,
-  suppressHydrationWarning = true,
+  disableTransitionOnChange = false, // Add this here to "catch" the prop
 }: ThemeProviderProps) {
   return (
     <NextThemesProvider
       attribute={attribute as any}
       defaultTheme={defaultTheme}
       enableSystem={enableSystem}
-      disableTransitionOnChange={false}
+      // Pass the prop through here
+      disableTransitionOnChange={disableTransitionOnChange}
       storageKey="nexus-theme"
     >
       {children}

@@ -17,6 +17,7 @@ model User {
   emailVerified DateTime?
   image         String?
   password      String?
+  status        String?   @default("Online")
   resetToken    String?   @unique
   resetTokenExpiry DateTime?
   createdAt     DateTime  @default(now())
@@ -24,6 +25,7 @@ model User {
 
   accounts      Account[]
   sessions      Session[]
+  tasks         Task[]
 
   @@map("users")
 }
@@ -66,4 +68,17 @@ model VerificationToken {
 
   @@unique([email, token])
   @@map("verification_tokens")
+}
+
+model Task {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String?
+  status      String   @default("todo") // "todo", "in-progress", "done"
+  priority    String   @default("medium") // "low", "medium", "high"
+  dueDate     DateTime?
+  userId      String   @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

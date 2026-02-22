@@ -1,3 +1,4 @@
+// app/layout.tsx
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ClientProviders } from "@/components/providers/client-providers";
@@ -7,15 +8,38 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["600", "700"],
+  weight: ["600", "700", "800"],
 });
 
-// NOW YOU CAN ADD YOUR LOGO METADATA HERE
 export const metadata: Metadata = {
   metadataBase: new URL("https://nexus-nextjs.vercel.app"),
-  title: "Nexus",
+  title: {
+    default: "Nexus | Unified Team Collaboration",
+    template: "%s | Nexus",
+  },
+  description:
+    "The all-in-one SaaS platform for elite teams to track tasks, manage complex projects, and monitor revenue growth in real-time.",
+  keywords: [
+    "SaaS",
+    "Project Management",
+    "Task Tracking",
+    "Revenue Analytics",
+    "Team Collaboration",
+  ],
+  authors: [{ name: "Nexus Team" }],
   openGraph: {
-    images: [{ url: "/logo.png", width: 1200, height: 630 }],
+    type: "website",
+    locale: "en_US",
+    url: "https://nexus-nextjs.vercel.app",
+    title: "Nexus | Streamline Your Team Workflow",
+    description:
+      "Track tasks, projects, and revenue with military-grade precision.",
+    siteName: "Nexus",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nexus",
+    description: "Unified collaboration for modern teams.",
   },
 };
 
@@ -27,11 +51,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${playfair.variable} font-sans bg-light-bg dark:bg-dark-bg transition-colors duration-300`}
+        className={`${inter.variable} ${playfair.variable} font-sans bg-[hsl(var(--background))] text-[hsl(var(--foreground))] antialiased transition-colors duration-300`}
       >
-        <ClientProviders>
-          <main>{children}</main>
-        </ClientProviders>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );
