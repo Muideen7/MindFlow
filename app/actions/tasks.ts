@@ -42,6 +42,7 @@ export async function createTask(formData: FormData) {
     },
   });
 
+  revalidatePath("/dashboard");
   revalidatePath("/dashboard/tasks");
 }
 
@@ -50,10 +51,12 @@ export async function updateTaskStatus(id: string, status: string) {
     where: { id },
     data: { status },
   });
+  revalidatePath("/dashboard");
   revalidatePath("/dashboard/tasks");
 }
 
 export async function deleteTask(id: string) {
   await prisma.task.delete({ where: { id } });
+  revalidatePath("/dashboard");
   revalidatePath("/dashboard/tasks");
 }
