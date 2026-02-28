@@ -66,8 +66,34 @@ export async function updateTaskStatus(id: string, status: string) {
   revalidatePath("/dashboard/tasks");
 }
 
+export async function updateTask(id: string, data: {
+  title?: string;
+  description?: string;
+  priority?: string;
+  status?: string;
+}) {
+  try {
+    const updatedTask = await prisma.task.update({
+      where: { id },
+      data,
+    });
+    revalidatePath("/dashboard/tasks");
+    revalidatePath("/dashboard");
+    return { success: true, task: updatedTask };
+  } catch (error) {
+    console.error("Task update failed:", error);
+    return { success: false, error: "Database error" };
+  }
+}
+
 export async function deleteTask(id: string) {
-  await prisma.task.delete({ where: { id } });
-  revalidatePath("/dashboard");
-  revalidatePath("/dashboard/tasks");
+  try {
+    await prisma.task.delete({ where: { id } });
+    revalidatePath("/dashboard/tasks");
+    revalidatePath("/dashboard");
+    return { success: true };
+  } catch (error) {
+    console.error("Task deletion failed:", error);
+    return { success: false, error: "Database error" };
+  }
 }

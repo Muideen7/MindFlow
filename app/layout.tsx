@@ -41,6 +41,10 @@ export const metadata: Metadata = {
     title: "Nexus",
     description: "Unified collaboration for modern teams.",
   },
+  icons: {
+    icon: "/icon.png",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({
