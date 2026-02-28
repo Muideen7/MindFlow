@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft, CheckCircle } from "lucide-react";
+import ThemeToggle from "@/components/ui/theme-toggle";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -38,7 +39,12 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="min-h-screen bg-light-bg dark:bg-dark-bg flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-light-bg dark:bg-dark-bg transition-colors duration-300 flex items-center justify-center px-4 py-12 relative">
+      {/* Global Theme Toggle for Auth Pages */}
+      <div className="absolute top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -79,7 +85,7 @@ export default function ForgotPasswordPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-light-bg-secondary dark:bg-dark-bg-card border border-light-border dark:border-dark-border text-light-text dark:text-dark-text placeholder-light-text/40 dark:placeholder-dark-text/40 focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-white dark:bg-neutral-950 border border-light-border dark:border-dark-border text-light-text dark:text-dark-text placeholder-light-text/40 dark:placeholder-dark-text/40 focus:outline-none focus:border-light-accent dark:focus:border-dark-accent transition-colors"
                 />
               </div>
 
@@ -98,7 +104,7 @@ export default function ForgotPasswordPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3 rounded-lg font-semibold transition-all duration-300 bg-light-accent hover:bg-light-accentHover dark:bg-dark-accent dark:hover:bg-dark-accentHover text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 rounded-lg font-semibold transition-all duration-300 bg-light-accent hover:bg-light-accentHover dark:bg-dark-accent dark:hover:bg-dark-accentHover text-white disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-light-accent/20 dark:shadow-dark-accent/20"
               >
                 {isLoading ? "Sending..." : "Send Reset Link"}
               </button>
@@ -142,8 +148,8 @@ export default function ForgotPasswordPage() {
                 We've sent a password reset link to <span className="font-medium">{email}</span>
               </p>
 
-              <div className="bg-light-bg-secondary dark:bg-dark-bg-card border border-light-border dark:border-dark-border rounded-lg p-4 mb-6 text-left">
-                <p className="text-sm text-light-text/80 dark:text-dark-text/80">
+              <div className="bg-white dark:bg-dark-card border border-light-border dark:border-dark-border rounded-xl p-6 mb-6 text-left">
+                <p className="text-sm text-light-text dark:text-dark-text">
                   <strong>Didn't receive the email?</strong>
                 </p>
                 <ul className="text-sm text-light-text/60 dark:text-dark-text/60 mt-2 space-y-1">

@@ -66,7 +66,7 @@ export function LoginForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="block w-full rounded-xl border border-gray-200 bg-gray-50/50 dark:bg-dark-bg-primary dark:border-gray-800 px-4 py-3 text-gray-900 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all outline-none"
+          className="block w-full rounded-xl border border-gray-200 bg-gray-50/50 dark:bg-neutral-950 dark:border-gray-800 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all outline-none"
           placeholder="name@company.com"
           disabled={isLoading}
         />
@@ -94,14 +94,14 @@ export function LoginForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="block w-full rounded-xl border border-gray-200 bg-gray-50/50 dark:bg-dark-bg-primary dark:border-gray-800 px-4 py-3 text-gray-900 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all outline-none pr-10"
+            className="block w-full rounded-xl border border-gray-200 bg-gray-50/50 dark:bg-neutral-950 dark:border-gray-800 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all outline-none pr-10"
             placeholder="••••••••"
             disabled={isLoading}
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
           >
             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
           </button>

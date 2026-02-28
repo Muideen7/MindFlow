@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { Menu, Moon, Sun } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Sidebar } from "@/components/dashboard/sidebar";
+import ThemeToggle from "@/components/ui/theme-toggle";
 
 export default function DashboardLayout({
   children,
@@ -17,8 +17,7 @@ export default function DashboardLayout({
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // 2. Hooks for Theme and Auth
-  const { theme, setTheme } = useTheme();
+  // 2. Hook for Auth
   const { data: session } = useSession();
 
   // 3. Hydration fix for Next.js (ensures server/client HTML match)
@@ -44,7 +43,7 @@ export default function DashboardLayout({
         }`}
       >
         {/* Header */}
-        <header className="h-16 flex items-center justify-between px-6 bg-white dark:bg-[hsl(var(--card))] border-b border-[hsl(var(--border))] sticky top-0 z-30">
+        <header className="h-16 flex items-center justify-between px-6 bg-white dark:bg-dark-card border-b border-light-border dark:border-dark-border sticky top-0 z-30">
           <button
             onClick={() => setSidebarOpen(true)}
             className="lg:hidden p-2 text-slate-500"
@@ -53,18 +52,13 @@ export default function DashboardLayout({
           </button>
 
           <div className="flex items-center gap-4 ml-auto">
-            {/* Theme Toggle */}
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-[hsl(var(--border))] text-slate-500 hover:text-orange-500 transition-all"
-            >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+            {/* Theme Toggle - Reusable Component */}
+            <ThemeToggle />
 
             {/* Profile Section */}
-            <div className="flex items-center gap-3 pl-4 border-l border-[hsl(var(--border))]">
+            <div className="flex items-center gap-3 pl-4 border-l border-light-border dark:border-dark-border">
               <div className="text-right hidden sm:block">
-                <p className="text-sm font-bold leading-none">
+                <p className="text-sm font-bold leading-none text-light-text dark:text-dark-text">
                   {session?.user?.name || "User"}
                 </p>
                 <p className="text-xs text-slate-500 mt-1 uppercase tracking-tighter font-semibold">
@@ -87,7 +81,7 @@ export default function DashboardLayout({
 
         {/* Main Content Area */}
         <main className="flex-1 overflow-y-auto p-6 md:p-10">
-          <div className="max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500 text-light-text dark:text-dark-text">
             {/* This is where app/dashboard/page.tsx (Home) 
                or app/dashboard/tasks/page.tsx will render.
             */}

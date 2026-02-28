@@ -131,60 +131,16 @@ export default function Hero() {
             className="relative hidden lg:block"
           >
             {/* Main Image */}
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-light-border dark:border-dark-border aspect-[3/2] w-full">
               <Image
-                src="/hero-dashboard.jpg"
+                src="/hero-dashboard.png"
                 alt="Nexus Dashboard - Modern Analytics Interface"
-                width={800}
-                height={600}
+                width={1200}
+                height={900}
                 priority
-                className="w-full h-auto"
+                className="w-full h-full object-cover object-top"
               />
-
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-light-accent/20 to-transparent dark:from-dark-accent/30" />
             </div>
-
-            {/* Floating Card - Productivity Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="absolute -bottom-6 -left-6 bg-light-bg-secondary dark:bg-dark-bg-secondary p-6 rounded-xl shadow-2xl border border-light-border dark:border-dark-border backdrop-blur-sm"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-2xl">
-                  📈
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-light-text dark:text-dark-text">
-                    40%
-                  </div>
-                  <div className="text-sm text-light-text/70 dark:text-dark-text/70">
-                    Productivity Increase
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Floating Badge - Team Size */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="absolute -top-6 -right-6 bg-light-bg-secondary dark:bg-dark-bg-secondary px-6 py-3 rounded-full shadow-lg border border-light-border dark:border-dark-border backdrop-blur-sm"
-            >
-              <div className="flex items-center gap-3">
-                <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-light-accent border-2 border-light-bg-secondary dark:border-dark-bg-secondary" />
-                  <div className="w-8 h-8 rounded-full bg-blue-400 border-2 border-light-bg-secondary dark:border-dark-bg-secondary" />
-                  <div className="w-8 h-8 rounded-full bg-purple-400 border-2 border-light-bg-secondary dark:border-dark-bg-secondary" />
-                </div>
-                <span className="text-sm font-semibold text-light-text dark:text-dark-text">
-                  +10K Teams
-                </span>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </div>
