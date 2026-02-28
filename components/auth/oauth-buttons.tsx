@@ -62,14 +62,14 @@ export const OAuthButtons = memo(function OAuthButtons() {
         type="button"
         onClick={handleGoogleSignIn}
         disabled={isGoogleLoading}
-        className="flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-dark-bg-card hover:bg-gray-50 dark:hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        className="flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-white hover:bg-gray-50 dark:hover:bg-gray-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isGoogleLoading ? (
-          <Loader2 className="h-5 w-5 animate-spin text-gray-700 dark:text-gray-300" />
+          <Loader2 className="h-5 w-5 animate-spin text-gray-700 dark:text-gray-900" />
         ) : (
           <GoogleIcon />
         )}
-        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+        <span className="text-sm font-semibold text-gray-700 dark:text-black">
           Google
         </span>
       </button>

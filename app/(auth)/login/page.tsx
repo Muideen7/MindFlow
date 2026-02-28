@@ -4,12 +4,18 @@ import Link from "next/link";
 import { LoginForm } from "@/components/auth/login-form";
 import { OAuthButtons } from "@/components/auth/oauth-buttons";
 import { ArrowLeft } from "lucide-react";
+import ThemeToggle from "@/components/ui/theme-toggle";
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen w-screen flex items-center justify-center bg-gray-50 dark:bg-dark-bg transition-colors duration-300">
+    <div className="min-h-screen w-screen flex items-center justify-center bg-light-bg dark:bg-dark-bg transition-colors duration-300 relative">
+      {/* Global Theme Toggle for Auth Pages */}
+      <div className="absolute top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+
       {/* Main Container - Full Screen */}
-      <div className="w-full h-screen grid grid-cols-1 lg:grid-cols-12 bg-white dark:bg-dark-bg-card overflow-hidden shadow-2xl shadow-orange-500/10 border-0 dark:border-0 transition-colors duration-300">
+      <div className="w-full h-screen grid grid-cols-1 lg:grid-cols-12 bg-white dark:bg-dark-card overflow-hidden shadow-2xl shadow-orange-500/10 border-0 dark:border-0 transition-colors duration-300">
         {/* Left Side - Branding & Features */}
         <div className="hidden lg:flex lg:col-span-5 bg-gradient-to-br from-orange-600 to-orange-500 p-12 flex-col justify-between relative overflow-hidden">
           {/* Abstract background shape */}
@@ -125,11 +131,11 @@ export default function LoginPage() {
         </div>
 
         {/* Right Side - Form Section */}
-        <div className="lg:col-span-7 flex flex-col justify-center px-8 py-12 sm:px-12 lg:px-20 overflow-y-auto">
+        <div className="lg:col-span-7 flex flex-col justify-center px-8 py-12 sm:px-12 lg:px-20 overflow-y-auto bg-white dark:bg-dark-bg">
           {/* Back Button */}
           <Link
             href="/"
-            className="flex items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition mb-6 w-fit"
+            className="flex items-center gap-2 text-light-text/60 dark:text-dark-text/60 hover:text-light-text dark:hover:text-dark-text transition mb-6 w-fit"
           >
             <ArrowLeft size={18} />
             Back to Home
@@ -138,10 +144,10 @@ export default function LoginPage() {
           <div className="w-full max-w-md mx-auto space-y-8">
             {/* Header */}
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <h1 className="text-3xl font-bold tracking-tight text-light-text dark:text-dark-text">
                 Welcome Back
               </h1>
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-light-text/60 dark:text-dark-text/60">
                 Enter your email and password to access your account.
               </p>
             </div>
@@ -152,10 +158,10 @@ export default function LoginPage() {
             {/* Divider */}
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-gray-200 dark:border-gray-800" />
+                <span className="w-full border-t border-light-border dark:border-dark-border" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-white dark:bg-dark-bg-card px-2 text-gray-500 dark:text-gray-400">
+                <span className="bg-white dark:bg-dark-card px-2 text-light-text/60 dark:text-dark-text/60">
                   Or continue with
                 </span>
               </div>
@@ -165,7 +171,7 @@ export default function LoginPage() {
             <OAuthButtons />
 
             {/* Sign Up Link */}
-            <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-8">
+            <p className="text-center text-sm text-light-text/60 dark:text-dark-text/60 mt-8">
               Don't have an account?{" "}
               <Link
                 href="/signup"

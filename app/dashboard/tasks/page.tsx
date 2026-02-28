@@ -1,147 +1,159 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getTasks, createTask, deleteTask } from "@/app/actions/tasks"; // Added deleteTask
-import { Plus, X, Loader2, Trash2 } from "lucide-react";
+import { getTasks, deleteTask } from "@/app/actions/tasks";
+import { Plus, Search, Filter, MoreHorizontal, Trash2, Edit3, Loader2 } from "lucide-react";
+import Image from "next/image";
+import { Modal } from "@/components/ui/modal";
+import { TaskForm } from "@/components/dashboard/task-form";
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState<any[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDeleting, setIsDeleting] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  // Form State
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("medium");
-  const [status, setStatus] = useState("todo");
+  const [isLoading, setIsLoading] = useState(true);
+  const [modalMode, setModalMode] = useState<"create" | "edit" | null>(null);
+  const [selectedTask, setSelectedTask] = useState<any>(null);
 
   const fetchTasks = async () => {
-    const data = await getTasks();
-    setTasks(data);
+    setIsLoading(true);
+    try {
+      const data = await getTasks();
+      setTasks(data);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
     fetchTasks();
   }, []);
 
-  const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this task?")) return;
-
-    setIsDeleting(id);
-    try {
-      await deleteTask(id);
-      await fetchTasks(); // Refresh list
-    } catch (error) {
-      console.error("Delete failed", error);
-    } finally {
-      setIsDeleting(null);
-    }
+  const handleCreate = () => {
+    setSelectedTask(null);
+    setModalMode("create");
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      await createTask({ title, description, priority, status });
-      setIsModalOpen(false);
-      setTitle("");
-      setDescription("");
-      fetchTasks();
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
+  const handleEdit = (task: any) => {
+    setSelectedTask(task);
+    setModalMode("edit");
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this task?")) return;
+    await deleteTask(id);
+    fetchTasks();
   };
 
   return (
-    <div className="space-y-8">
-      <div className="flex justify-between items-center">
+    <div className="space-y-8 pb-12">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Project Tasks</h1>
-          <p className="opacity-60 text-sm">
-            Manage and track your team's progress.
-          </p>
+          <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">Project Tasks</h1>
+          <p className="text-sm text-neutral-500 mt-1">Manage, track, and assign tasks to your team members.</p>
         </div>
         <button
-          onClick={() => setIsModalOpen(true)}
-          className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg shadow-orange-500/20"
+          onClick={handleCreate}
+          className="flex items-center gap-2 px-5 py-2.5 bg-orange-500 text-white rounded-xl font-bold shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition-all"
         >
           <Plus size={20} />
           Create Task
         </button>
       </div>
 
-      <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-3xl overflow-hidden shadow-sm">
+      {/* Toolbar */}
+      <div className="flex flex-col sm:flex-row gap-4">
+        <div className="relative flex-1">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400" size={18} />
+          <input
+            type="text"
+            placeholder="Search tasks..."
+            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 rounded-2xl text-sm outline-none focus:ring-2 focus:ring-orange-500 transition-all"
+          />
+        </div>
+        <div className="flex gap-2">
+          <button className="flex items-center gap-2 px-4 py-3 bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 rounded-2xl text-xs font-bold text-neutral-500">
+            <Filter size={16} />
+            Status
+          </button>
+          <button className="flex items-center gap-2 px-4 py-3 bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 rounded-2xl text-xs font-bold text-neutral-500">
+            Priority
+          </button>
+        </div>
+      </div>
+
+      {/* Task Table */}
+      <div className="bg-white dark:bg-neutral-900 rounded-3xl border border-gray-100 dark:border-neutral-800 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left">
-            <thead className="text-[10px] uppercase font-bold opacity-50 bg-[hsl(var(--muted))] tracking-widest">
-              <tr>
-                <th className="px-6 py-4">Task Name</th>
-                <th className="px-6 py-4">Priority</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4 text-right">Actions</th>
+            <thead>
+              <tr className="border-b border-gray-50 dark:border-neutral-800">
+                <th className="px-8 py-5 text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Task Details</th>
+                <th className="px-8 py-5 text-[10px] font-bold text-neutral-400 uppercase tracking-widest text-center">Assignees</th>
+                <th className="px-8 py-5 text-[10px] font-bold text-neutral-400 uppercase tracking-widest text-center">Priority</th>
+                <th className="px-8 py-5 text-[10px] font-bold text-neutral-400 uppercase tracking-widest text-center">Status</th>
+                <th className="px-8 py-5 text-[10px] font-bold text-neutral-400 uppercase tracking-widest text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[hsl(var(--border))]">
-              {tasks.length === 0 ? (
+            <tbody className="divide-y divide-gray-50 dark:divide-neutral-800">
+              {isLoading ? (
                 <tr>
-                  <td
-                    colSpan={4}
-                    className="px-6 py-12 text-center opacity-40 italic"
-                  >
-                    No tasks found.
+                  <td colSpan={5} className="px-8 py-20 text-center">
+                    <Loader2 className="mx-auto animate-spin text-orange-500" size={32} />
+                  </td>
+                </tr>
+              ) : tasks.length === 0 ? (
+                <tr>
+                  <td colSpan={5} className="px-8 py-20 text-center text-neutral-500">
+                    No tasks found. Create one to get started!
                   </td>
                 </tr>
               ) : (
                 tasks.map((task) => (
-                  <tr
-                    key={task.id}
-                    className="hover:bg-orange-50/30 dark:hover:bg-orange-950/10 transition-colors group"
-                  >
-                    <td className="px-6 py-5">
-                      <p className="font-bold text-sm">{task.title}</p>
-                      <p className="text-xs opacity-50 truncate max-w-[200px]">
-                        {task.description}
-                      </p>
+                  <tr key={task.id} className="group hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors">
+                    <td className="px-8 py-5">
+                      <h4 className="font-bold text-neutral-900 dark:text-white mb-1">{task.title}</h4>
+                      <p className="text-xs text-neutral-400 line-clamp-1">{task.description}</p>
                     </td>
-                    <td className="px-6 py-5">
-                      <span
-                        className={`text-[10px] uppercase font-black px-2 py-0.5 border rounded-md ${
-                          task.priority === "high"
-                            ? "border-red-200 bg-red-50 text-red-600"
-                            : task.priority === "medium"
-                              ? "border-amber-200 bg-amber-50 text-amber-600"
-                              : "border-emerald-200 bg-emerald-50 text-emerald-600"
-                        }`}
-                      >
-                        {task.priority}
+                     <td className="px-8 py-5">
+                       <div className="flex -space-x-2 items-center justify-center">
+                         <div className="relative w-7 h-7 rounded-full overflow-hidden border-2 border-white dark:border-neutral-900">
+                           <Image src={`https://i.pravatar.cc/150?u=${task.id}`} fill className="object-cover" alt="Avatar" />
+                         </div>
+                         <div className="relative w-7 h-7 rounded-full overflow-hidden border-2 border-white dark:border-neutral-900">
+                           <Image src={`https://i.pravatar.cc/150?u=${task.id}2`} fill className="object-cover" alt="Avatar" />
+                         </div>
+                       </div>
+                     </td>
+                    <td className="px-8 py-5 text-center">
+                      <span className={`text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter
+                        ${task.priority === "high" ? "bg-red-50 text-red-500 dark:bg-red-950/20" : 
+                          task.priority === "medium" ? "bg-orange-50 text-orange-500 dark:bg-orange-950/20" : 
+                          "bg-blue-50 text-blue-500 dark:bg-blue-950/20"}`}>
+                        {task.priority || "Medium"}
                       </span>
                     </td>
-                    <td className="px-6 py-5">
-                      <span
-                        className={`text-[10px] font-bold px-3 py-1 rounded-full uppercase ${
-                          task.status === "done"
-                            ? "bg-emerald-500 text-white"
-                            : "bg-slate-200 dark:bg-slate-800"
-                        }`}
-                      >
-                        {task.status}
+                    <td className="px-8 py-5 text-center">
+                      <span className={`text-[10px] font-bold px-3 py-1 rounded-full uppercase
+                        ${task.status === "completed" ? "bg-green-500 text-white" : 
+                          task.status === "in-progress" ? "bg-orange-500 text-white" : 
+                          "bg-neutral-100 dark:bg-neutral-800 text-neutral-400"}`}>
+                        {task.status || "todo"}
                       </span>
                     </td>
-                    <td className="px-6 py-5 text-right">
-                      <button
-                        onClick={() => handleDelete(task.id)}
-                        disabled={isDeleting === task.id}
-                        className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all"
-                      >
-                        {isDeleting === task.id ? (
-                          <Loader2 size={18} className="animate-spin" />
-                        ) : (
-                          <Trash2 size={18} />
-                        )}
-                      </button>
+                    <td className="px-8 py-5 text-right">
+                      <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button 
+                          onClick={() => handleEdit(task)}
+                          className="p-2 text-neutral-400 hover:text-orange-500 bg-neutral-100 dark:bg-neutral-800 rounded-lg transition-all"
+                        >
+                          <Edit3 size={16} />
+                        </button>
+                        <button 
+                          onClick={() => handleDelete(task.id)}
+                          className="p-2 text-neutral-400 hover:text-red-500 bg-neutral-100 dark:bg-neutral-800 rounded-lg transition-all"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))
@@ -151,92 +163,20 @@ export default function TasksPage() {
         </div>
       </div>
 
-      {/* Create Task Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
-          <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
-            <div className="p-6 border-b border-[hsl(var(--border))] flex justify-between items-center bg-slate-50/50 dark:bg-slate-900/50">
-              <h2 className="font-bold text-xl">New Task</h2>
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="opacity-40 hover:opacity-100 transition-opacity"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
-            <form onSubmit={handleSubmit} className="p-6 space-y-5">
-              <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase opacity-50 ml-1">
-                  Task Title
-                </label>
-                <input
-                  required
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="e.g. Design System Update"
-                  className="w-full bg-[hsl(var(--muted))] border-none rounded-2xl p-4 focus:ring-2 focus:ring-orange-500 transition-all"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase opacity-50 ml-1">
-                  Description
-                </label>
-                <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  placeholder="What needs to be done?"
-                  className="w-full bg-[hsl(var(--muted))] border-none rounded-2xl p-4 min-h-[100px] focus:ring-2 focus:ring-orange-500 transition-all"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase opacity-50 ml-1">
-                    Priority
-                  </label>
-                  <select
-                    value={priority}
-                    onChange={(e) => setPriority(e.target.value)}
-                    className="w-full bg-[hsl(var(--muted))] border-none rounded-xl p-3 focus:ring-2 focus:ring-orange-500 font-bold text-sm"
-                  >
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                  </select>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold uppercase opacity-50 ml-1">
-                    Status
-                  </label>
-                  <select
-                    value={status}
-                    onChange={(e) => setStatus(e.target.value)}
-                    className="w-full bg-[hsl(var(--muted))] border-none rounded-xl p-3 focus:ring-2 focus:ring-orange-500 font-bold text-sm"
-                  >
-                    <option value="todo">To Do</option>
-                    <option value="in-progress">In Progress</option>
-                    <option value="done">Done</option>
-                  </select>
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 rounded-2xl transition-all flex items-center justify-center gap-2 mt-4"
-              >
-                {loading ? (
-                  <Loader2 className="animate-spin" size={20} />
-                ) : (
-                  "Add Task to Workspace"
-                )}
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
+      {/* Task Modal */}
+      <Modal
+        isOpen={!!modalMode}
+        onClose={() => setModalMode(null)}
+        title={modalMode === "create" ? "Create New Task" : "Edit Task"}
+      >
+        <TaskForm 
+          initialData={selectedTask} 
+          onSuccess={() => {
+            setModalMode(null);
+            fetchTasks();
+          }} 
+        />
+      </Modal>
     </div>
   );
 }

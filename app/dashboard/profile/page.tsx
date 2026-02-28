@@ -78,7 +78,7 @@ export default function ProfilePage() {
               <img
                 src={
                   session?.user?.image ||
-                  `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`
+                  `https://i.pravatar.cc/150?u=${name || "user"}`
                 }
                 alt="avatar"
                 className="w-full h-full object-cover"
