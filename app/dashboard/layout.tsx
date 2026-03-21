@@ -23,7 +23,7 @@ export default function DashboardLayout({
   if (!mounted) return null;
 
   return (
-    <div className="flex h-screen bg-neutral-50 dark:bg-black overflow-hidden font-sans">
+    <div className="flex h-screen bg-[#F2F2F0] dark:bg-[#1A1A1A] overflow-hidden font-sans">
       <SidebarNew
         isCollapsed={isCollapsed}
         setIsCollapsed={setIsCollapsed}
@@ -38,7 +38,7 @@ export default function DashboardLayout({
       >
         <Topbar setSidebarOpen={setSidebarOpen} />
 
-        <main className="flex-1 overflow-y-auto bg-neutral-50 dark:bg-black">
+        <main className="flex-1 overflow-y-auto bg-[#F2F2F0] dark:bg-[#1A1A1A]">
           <div className="p-4 md:p-8">
             <div className="max-w-[1600px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
               {children}

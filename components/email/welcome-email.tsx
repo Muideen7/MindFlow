@@ -24,13 +24,13 @@ export default function WelcomeEmail({ name }: { name: string }) {
       <body>
         <div class="container">
           <div class="header">
-            <h1>Welcome to Nexus, ${name}! 🚀</h1>
+            <h1>Welcome to MindFlow, ${name}! 🚀</h1>
             <p style="margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Your journey to better collaboration starts now</p>
           </div>
 
           <div class="content">
             <p>Hi ${name},</p>
-            <p>Thank you for joining Nexus! We're thrilled to have you on board. Your email has been verified, and your account is now fully activated.</p>
+            <p>Thank you for joining MindFlow! We're thrilled to have you on board. Your email has been verified, and your account is now fully activated.</p>
 
             <div class="section">
               <h2>What You Can Do Now</h2>
@@ -53,7 +53,7 @@ export default function WelcomeEmail({ name }: { name: string }) {
               <ol style="padding-left: 20px;">
                 <li><strong>Set up your profile</strong> - Add a photo and bio to personalize your account</li>
                 <li><strong>Create your first project</strong> - Start organizing your work</li>
-                <li><strong>Invite your team</strong> - Collaboration is where Nexus shines</li>
+                <li><strong>Invite your team</strong> - Collaboration is where MindFlow shines</li>
                 <li><strong>Explore integrations</strong> - Connect your favorite tools</li>
               </ol>
             </div>
@@ -63,7 +63,7 @@ export default function WelcomeEmail({ name }: { name: string }) {
               <ul class="feature-list">
                 <li><strong>Real-time Collaboration</strong> - Work together seamlessly with your team</li>
                 <li><strong>Advanced Analytics</strong> - Get insights into your project performance</li>
-                <li><strong>Customizable Workflows</strong> - Tailor Nexus to match your process</li>
+                <li><strong>Customizable Workflows</strong> - Tailor MindFlow to match your process</li>
                 <li><strong>Enterprise Security</strong> - Your data is protected with bank-level encryption</li>
                 <li><strong>24/7 Support</strong> - Our team is always here to help</li>
               </ul>
@@ -77,7 +77,7 @@ export default function WelcomeEmail({ name }: { name: string }) {
 
             <div class="section">
               <h2>Need Help?</h2>
-              <p>We've created comprehensive guides to help you get the most out of Nexus:</p>
+              <p>We've created comprehensive guides to help you get the most out of MindFlow:</p>
               <ul style="padding-left: 20px;">
                 <li><a href="${process.env.NEXT_PUBLIC_APP_URL}/docs" style="color: #FF6B35; text-decoration: none;">📚 Documentation</a> - Learn all the features</li>
                 <li><a href="${process.env.NEXT_PUBLIC_APP_URL}/tutorials" style="color: #FF6B35; text-decoration: none;">🎓 Video Tutorials</a> - Step-by-step guides</li>
@@ -86,18 +86,18 @@ export default function WelcomeEmail({ name }: { name: string }) {
             </div>
 
             <div class="highlight">
-              <strong>🎁 Special Offer:</strong> Invite 3 friends to Nexus and unlock premium features for free for 1 month!
+              <strong>🎁 Special Offer:</strong> Invite 3 friends to MindFlow and unlock premium features for free for 1 month!
             </div>
 
             <p style="margin-top: 30px; color: #666;">
               Best regards,<br>
-              <strong>The Nexus Team</strong><br>
+              <strong>The MindFlow Team</strong><br>
               <em>Making collaboration effortless</em>
             </p>
           </div>
 
           <div class="footer">
-            <p>&copy; 2024 Nexus. All rights reserved.</p>
+            <p>&copy; 2024 MindFlow. All rights reserved.</p>
             <p>
               <a href="${process.env.NEXT_PUBLIC_APP_URL}/privacy" style="color: #FF6B35; text-decoration: none; margin: 0 10px;">Privacy Policy</a> |
               <a href="${process.env.NEXT_PUBLIC_APP_URL}/terms" style="color: #FF6B35; text-decoration: none; margin: 0 10px;">Terms of Service</a>

@@ -1,116 +1,100 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap');
+
+.font-zcool {
+  font-family: 'ZCOOL QingKe HuangYou', cursive, sans-serif;
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 98%;
+  --background: 40 10% 94%; /* #F2F2F0 equivalent approx */
   --foreground: 0 0% 10%;
   --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10%;
+  --primary: 40 10% 88%; /* #E0E0DE (previous footer) */
+  --primary-foreground: 0 0% 10%;
+  --secondary: 247 9% 22%; /* #37353E */
+  --secondary-foreground: 0 0% 100%;
+  --muted: 40 10% 85%;
+  --muted-foreground: 0 0% 40%;
+  --accent: 40 10% 90%;
+  --accent-foreground: 0 0% 10%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
   --border: 0 0% 90%;
-  --input: 0 0% 100%;
+  --input: 0 0% 90%;
+  --ring: 250 100% 64%;
+  --radius: 0.75rem;
   --font-sans: "Inter", sans-serif;
-  --font-display: "Playfair Display", serif;
 }
 
 .dark {
-  /* Deeper, cleaner dark blue-black */
-  --background: 200 10% 6%;
-  --foreground: 0 0% 96%;
-  --card: 200 10% 8%;
-  --border: 200 10% 14%;
-  --input: 200 10% 10%;
+  --background: 0 0% 10%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 12%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 10%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 250 100% 64%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 15%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 0 0% 15%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 20%;
+  --input: 0 0% 20%;
+  --ring: 250 100% 64%;
 }
 
 @layer base {
   * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /* Removed the global * transition that causes blurring */
+    @apply border-border;
   }
-
   html {
     scroll-behavior: smooth;
   }
-
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-family: var(--font-sans);
-    line-height: 1.6;
-    /* Transitions applied specifically to body to avoid affecting input focus */
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
-  }
-
-  /* CRISP INPUTS: The fix for the "Blurry" look */
-  input {
-    @apply bg-[hsl(var(--input))] text-[hsl(var(--foreground))] 
-           border-[hsl(var(--border))] rounded-lg border px-4 py-2
-           outline-none transition-all duration-200;
-  }
-
-  input:focus {
-    @apply ring-2 ring-light-accent/20 border-light-accent 
-           dark:ring-dark-accent/20 dark:border-dark-accent;
-  }
-
-  /* FIX: Chrome Autofill Yellow Box */
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus {
-    -webkit-text-fill-color: hsl(var(--foreground)) !important;
-    -webkit-box-shadow: 0 0 0px 1000px hsl(var(--background)) inset !important;
-    transition: background-color 5000s ease-in-out 0s;
+    @apply bg-background text-foreground font-sans antialiased;
+    background-color: #F2F2F0; /* Override with exact color from screenshot */
   }
 }
 
 @layer components {
+  .pixel-gradient {
+    background: linear-gradient(90deg, #FF7B7B 0%, #D2A5FF 50%, #A0B1FF 100%);
+  }
+  
+  .dark-section {
+    @apply bg-[#1A1A1A] text-white rounded-[2rem];
+  }
+
+  .nav-link {
+    @apply text-sm font-medium text-muted-foreground hover:text-foreground transition-colors;
+  }
+
   .section {
-    @apply py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8;
+    @apply py-16 md:py-24 lg:py-32;
   }
 
   .section-container {
-    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
   }
 
-  .heading {
-    @apply font-display text-3xl md:text-5xl lg:text-7xl font-bold leading-tight;
+  .pixelated {
+    image-rendering: pixelated;
   }
 
-  .subheading {
-    @apply text-xl md:text-2xl font-semibold;
-  }
-
-  .body-text {
-    @apply text-base md:text-lg leading-relaxed text-slate-600 dark:text-slate-400;
-  }
-
-  /* ACCENT BUTTONS */
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold 
-           transition-all duration-300 bg-light-accent hover:bg-light-accentHover 
-           dark:bg-dark-accent dark:hover:bg-dark-accentHover text-white shadow-sm;
-  }
-
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold 
-           transition-all duration-300 border-2 border-light-accent text-light-accent 
-           hover:bg-light-accent hover:text-white dark:border-dark-accent 
-           dark:text-dark-accent dark:hover:bg-dark-accent dark:hover:text-white;
-  }
-
-  .gradient-text {
-    @apply bg-gradient-to-r from-light-accent to-orange-500 
-           dark:from-dark-accent dark:to-orange-400 bg-clip-text text-transparent;
-  }
-
-  .card {
-    @apply bg-[hsl(var(--card))] border border-[hsl(var(--border))] 
-           rounded-xl p-6 shadow-lg transition-all duration-300;
+  .tracking-tightest {
+    letter-spacing: -0.06em;
   }
 }
 

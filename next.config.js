@@ -1,11 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
-  // --- ADD THIS SECTION START ---
-  outputFileTracingIncludes: {
-    "/api/auth/**/*": ["./node_modules/.prisma/client/**/*"],
-  },
-  // --- ADD THIS SECTION END ---
+  reactStrictMode: true,
+  turbopack: {},
   images: {
     remotePatterns: [
       {
@@ -20,12 +16,17 @@ const nextConfig = {
         protocol: "https",
         hostname: "i.pravatar.cc",
       },
+      {
+        protocol: "https",
+        hostname: "logo.clearbit.com",
+      },
+
     ],
     formats: ["image/avif", "image/webp"],
   },
   onDemandEntries: {
-    maxInactiveAge: 60 * 1000,
-    pagesBufferLength: 5,
+    maxInactiveAge: 30 * 1000,
+    pagesBufferLength: 2,
   },
   experimental: {
     optimizePackageImports: ["lucide-react"],

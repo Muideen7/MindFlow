@@ -3,23 +3,23 @@ import type { Metadata } from "next";
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://nexus.vercel.app";
 
 export const metadata: Metadata = {
-  title: "Nexus - Modern Team Collaboration & Productivity Platform",
+  title: "MindFlow - Modern Team Collaboration & Productivity Platform",
   description:
-    "Nexus is a production-ready SaaS platform for team collaboration. Streamline workflows, boost productivity, and transform how your team works together. Real-time sync, enterprise security, and seamless integrations.",
+    "MindFlow is a production-ready SaaS platform for team collaboration. Streamline workflows, boost productivity, and transform how your team works together. Real-time sync, AI-powered task management, and seamless integrations.",
   keywords: [
     "SaaS",
     "team collaboration",
     "project management",
     "productivity",
     "workflow automation",
-    "team productivity",
+    "AI task management",
     "collaboration tools",
     "task management",
     "team dashboard",
-    "Nexus",
+    "MindFlow",
   ].join(", "),
-  authors: [{ name: "FrontendGeek", url: "https://github.com/Muideen7" }],
-  creator: "FrontendGeek",
+  authors: [{ name: "Muideen7", url: "https://github.com/Muideen7" }],
+  creator: "Muideen7",
   metadataBase: new URL(baseUrl),
   robots: {
     index: true,
@@ -36,23 +36,23 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: baseUrl,
-    siteName: "Nexus",
-    title: "Nexus - Modern Team Collaboration & Productivity Platform",
+    siteName: "MindFlow",
+    title: "MindFlow - Modern Team Collaboration & Productivity Platform",
     description:
-      "Production-ready SaaS platform with real-time sync, enterprise security, and seamless integrations. Boost team productivity by 40%+",
+      "Production-ready SaaS platform with real-time sync, AI task management, and seamless integrations. Boost team productivity by 40%+",
     images: [
       {
         url: `${baseUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Nexus Team Collaboration Platform",
+        alt: "MindFlow Team Collaboration Platform",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nexus - Team Collaboration & Productivity SaaS",
+    title: "MindFlow - Team Collaboration & Productivity SaaS",
     description:
       "Modern team collaboration platform. Transform how your team works. Try free today.",
     creator: "@OlayeyeMuideen",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Nexus",
+    title: "MindFlow",
   },
   formatDetection: {
     telephone: false,

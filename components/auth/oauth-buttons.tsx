@@ -62,14 +62,14 @@ export const OAuthButtons = memo(function OAuthButtons() {
         type="button"
         onClick={handleGoogleSignIn}
         disabled={isGoogleLoading}
-        className="flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-white hover:bg-gray-50 dark:hover:bg-gray-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        className="flex items-center justify-center gap-3 w-full py-4 border border-black/10 rounded-2xl bg-white hover:bg-black/5 transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
       >
         {isGoogleLoading ? (
-          <Loader2 className="h-5 w-5 animate-spin text-gray-700 dark:text-gray-900" />
+          <Loader2 className="h-5 w-5 animate-spin text-black" />
         ) : (
           <GoogleIcon />
         )}
-        <span className="text-sm font-semibold text-gray-700 dark:text-black">
+        <span className="text-xs font-bold uppercase tracking-widest text-black">
           Google
         </span>
       </button>
@@ -77,10 +77,12 @@ export const OAuthButtons = memo(function OAuthButtons() {
       <button
         type="button"
         onClick={handleAppleSignIn}
-        className="flex items-center justify-center gap-3 px-4 py-3 border border-gray-900 dark:border-gray-700 rounded-lg bg-black dark:bg-gray-900 hover:bg-gray-900 dark:hover:bg-gray-800 transition-all"
+        className="flex items-center justify-center gap-3 w-full py-4 border border-[#2C2C2C] rounded-2xl bg-[#2C2C2C] hover:bg-black transition-all group"
       >
-        <AppleIcon />
-        <span className="text-sm font-medium text-white">Apple</span>
+        <div className="text-white group-hover:text-white transition-colors">
+          <AppleIcon />
+        </div>
+        <span className="text-xs font-bold uppercase tracking-widest text-white">Apple</span>
       </button>
     </div>
   );
