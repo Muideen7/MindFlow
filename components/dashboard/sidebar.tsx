@@ -83,14 +83,14 @@ export function Sidebar({
               href={item.href}
               className={`
                 flex items-center gap-3 p-3 rounded-xl transition-all group
-                hover:bg-orange-500/10 dark:hover:bg-orange-500/10
+                hover:bg-blue-600/10 dark:hover:bg-blue-600/10
                 ${isCollapsed ? "justify-center" : ""}
               `}
               title={isCollapsed ? item.name : ""}
             >
               <item.icon
                 size={22}
-                className="text-slate-500 group-hover:text-orange-500 transition-colors shrink-0"
+                className="text-slate-500 group-hover:text-blue-600 transition-colors shrink-0"
               />
               {!isCollapsed && (
                 <span className="font-medium text-sm tracking-wide truncate animate-in slide-in-from-left-2">

@@ -222,7 +222,7 @@ export function UpcomingDeadlines({ data }: { data: any[] }) {
         </div>
         <div className="flex justify-between items-center">
           <span className="text-xs font-bold text-neutral-400">Milestones reaching</span>
-          <span className="text-sm font-bold text-orange-500">3/4 Done</span>
+          <span className="text-sm font-bold text-blue-600">3/4 Done</span>
         </div>
       </div>
     </div>

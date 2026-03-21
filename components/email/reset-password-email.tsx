@@ -32,7 +32,7 @@ export function ResetPasswordEmailTemplate(
             <p style="color: #666; font-size: 14px;">Or copy this link: <br/>${resetLink}</p>
           </div>
           <div class="footer">
-            <p>&copy; 2024 Nexus. All rights reserved.</p>
+            <p>&copy; 2024 MindFlow. All rights reserved.</p>
           </div>
         </div>
       </body>

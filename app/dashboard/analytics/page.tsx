@@ -10,7 +10,7 @@ export default function AnalyticsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white dark:bg-neutral-900 p-6 rounded-2xl border border-gray-100 dark:border-neutral-800 shadow-sm">
-          <div className="p-3 bg-orange-100 dark:bg-orange-950/20 text-orange-600 rounded-xl w-fit mb-4">
+          <div className="p-3 bg-blue-100 dark:bg-blue-950/20 text-blue-700 rounded-xl w-fit mb-4">
             <BarChart3 size={24} />
           </div>
           <h3 className="text-lg font-bold">Performance Data</h3>

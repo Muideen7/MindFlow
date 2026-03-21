@@ -5,7 +5,7 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 
 // Image metadata
-export const alt = "Nexus - Unified Team Collaboration";
+export const alt = "MindFlow - Unified Team Collaboration";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -35,7 +35,7 @@ export default async function Image() {
             borderRadius: "20px",
           }}
         />
-        <span style={{ fontWeight: 800, letterSpacing: "-0.05em" }}>Nexus</span>
+        <span style={{ fontWeight: 800, letterSpacing: "-0.05em" }}>MindFlow</span>
       </div>
       <div
         style={{ fontSize: 36, marginTop: 40, opacity: 0.9, fontWeight: 500 }}

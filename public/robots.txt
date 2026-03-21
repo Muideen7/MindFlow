@@ -6,7 +6,7 @@ Disallow: /*.json$
 Disallow: /*?*sort=
 Disallow: /*?*filter=
 
-Sitemap: https://nexus.vercel.app/sitemap.xml
+Sitemap: https://mindflow.vercel.app/sitemap.xml
 
 User-agent: GPTBot
 Disallow: /

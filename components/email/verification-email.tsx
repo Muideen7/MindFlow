@@ -26,13 +26,13 @@ export default function VerificationEmail({
           </div>
           <div class="content">
             <p>Hi ${name},</p>
-            <p>Welcome to Nexus! Please verify your email address to get started.</p>
+            <p>Welcome to MindFlow! Please verify your email address to get started.</p>
             <a href="${verificationUrl}" class="button">Verify Email</a>
             <p style="color: #666; font-size: 14px;">Or copy this link: <br/>${verificationUrl}</p>
             <p style="color: #999; font-size: 12px;">This link expires in 24 hours.</p>
           </div>
           <div class="footer">
-            <p>&copy; 2024 Nexus. All rights reserved.</p>
+            <p>&copy; 2024 MindFlow. All rights reserved.</p>
           </div>
         </div>
       </body>

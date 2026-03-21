@@ -74,7 +74,7 @@ export default function ProfilePage() {
         >
           {/* Avatar Section */}
           <div className="relative group mx-auto md:mx-0">
-            <div className="w-32 h-32 rounded-3xl overflow-hidden border-4 border-orange-500/10 bg-slate-100 dark:bg-slate-800">
+            <div className="w-32 h-32 rounded-3xl overflow-hidden border-4 border-blue-600/10 bg-slate-100 dark:bg-slate-800">
               <img
                 src={
                   session?.user?.image ||
@@ -107,7 +107,7 @@ export default function ProfilePage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter your name"
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 focus:ring-2 focus:ring-orange-500 outline-none transition-all font-medium"
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 focus:ring-2 focus:ring-blue-600 outline-none transition-all font-medium"
                 />
               </div>
 
@@ -118,7 +118,7 @@ export default function ProfilePage() {
                 <select
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 focus:ring-2 focus:ring-orange-500 outline-none transition-all font-medium appearance-none"
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 focus:ring-2 focus:ring-blue-600 outline-none transition-all font-medium appearance-none"
                 >
                   <option value="Online">🟢 Online</option>
                   <option value="Away">🟡 Away</option>
@@ -133,7 +133,7 @@ export default function ProfilePage() {
               <button
                 type="submit"
                 disabled={isPending}
-                className="bg-orange-600 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-orange-700 hover:shadow-lg hover:shadow-orange-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-blue-800 hover:shadow-lg hover:shadow-blue-600/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isPending ? (
                   <Loader2 size={18} className="animate-spin" />

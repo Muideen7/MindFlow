@@ -52,7 +52,7 @@ export default function TasksPage() {
         </div>
         <button
           onClick={handleCreate}
-          className="flex items-center gap-2 px-5 py-2.5 bg-orange-500 text-white rounded-xl font-bold shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition-all"
+          className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-xl font-bold shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-all"
         >
           <Plus size={20} />
           Create Task
@@ -66,7 +66,7 @@ export default function TasksPage() {
           <input
             type="text"
             placeholder="Search tasks..."
-            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 rounded-2xl text-sm outline-none focus:ring-2 focus:ring-orange-500 transition-all"
+            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 rounded-2xl text-sm outline-none focus:ring-2 focus:ring-blue-600 transition-all"
           />
         </div>
         <div className="flex gap-2">
@@ -97,7 +97,7 @@ export default function TasksPage() {
               {isLoading ? (
                 <tr>
                   <td colSpan={5} className="px-8 py-20 text-center">
-                    <Loader2 className="mx-auto animate-spin text-orange-500" size={32} />
+                    <Loader2 className="mx-auto animate-spin text-blue-600" size={32} />
                   </td>
                 </tr>
               ) : tasks.length === 0 ? (
@@ -126,7 +126,7 @@ export default function TasksPage() {
                     <td className="px-8 py-5 text-center">
                       <span className={`text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter
                         ${task.priority === "high" ? "bg-red-50 text-red-500 dark:bg-red-950/20" : 
-                          task.priority === "medium" ? "bg-orange-50 text-orange-500 dark:bg-orange-950/20" : 
+                          task.priority === "medium" ? "bg-blue-50 text-blue-600 dark:bg-blue-950/20" :
                           "bg-blue-50 text-blue-500 dark:bg-blue-950/20"}`}>
                         {task.priority || "Medium"}
                       </span>
@@ -134,7 +134,7 @@ export default function TasksPage() {
                     <td className="px-8 py-5 text-center">
                       <span className={`text-[10px] font-bold px-3 py-1 rounded-full uppercase
                         ${task.status === "completed" ? "bg-green-500 text-white" : 
-                          task.status === "in-progress" ? "bg-orange-500 text-white" : 
+                          task.status === "in-progress" ? "bg-blue-600 text-white" :
                           "bg-neutral-100 dark:bg-neutral-800 text-neutral-400"}`}>
                         {task.status || "todo"}
                       </span>
@@ -143,7 +143,7 @@ export default function TasksPage() {
                       <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                         <button 
                           onClick={() => handleEdit(task)}
-                          className="p-2 text-neutral-400 hover:text-orange-500 bg-neutral-100 dark:bg-neutral-800 rounded-lg transition-all"
+                          className="p-2 text-neutral-400 hover:text-blue-600 bg-neutral-100 dark:bg-neutral-800 rounded-lg transition-all"
                         >
                           <Edit3 size={16} />
                         </button>

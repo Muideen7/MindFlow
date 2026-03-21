@@ -81,7 +81,7 @@ export default function WelcomeEmail({ name }: { name: string }) {
               <ul style="padding-left: 20px;">
                 <li><a href="${process.env.NEXT_PUBLIC_APP_URL}/docs" style="color: #FF6B35; text-decoration: none;">📚 Documentation</a> - Learn all the features</li>
                 <li><a href="${process.env.NEXT_PUBLIC_APP_URL}/tutorials" style="color: #FF6B35; text-decoration: none;">🎓 Video Tutorials</a> - Step-by-step guides</li>
-                <li><a href="mailto:support@nexus.com" style="color: #FF6B35; text-decoration: none;">💬 Contact Support</a> - We're here to help</li>
+                <li><a href="mailto:support@mindflow.com" style="color: #FF6B35; text-decoration: none;">💬 Contact Support</a> - We're here to help</li>
               </ul>
             </div>
 

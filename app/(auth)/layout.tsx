@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Login | Nexus",
-  description: "Sign in to your Nexus account",
+  title: "Login | MindFlow",
+  description: "Sign in to your MindFlow account",
 };
 
 export default function LoginLayout({ children }: { children: ReactNode }) {

@@ -68,17 +68,17 @@ export function SidebarNew({
         <div className="h-20 flex items-center justify-between px-6 shrink-0">
           {!isCollapsed && (
             <Link href="/dashboard" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">N</span>
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xl">M</span>
               </div>
               <span className="font-bold text-xl tracking-tight text-neutral-900 dark:text-white">
-                Nexus
+                MindFlow
               </span>
             </Link>
           )}
           {isCollapsed && (
-            <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center mx-auto">
-              <span className="text-white font-bold text-xl">N</span>
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mx-auto">
+              <span className="text-white font-bold text-xl">M</span>
             </div>
           )}
           <button
@@ -100,7 +100,7 @@ export function SidebarNew({
                 className={`
                   flex items-center gap-3 p-3 rounded-xl transition-all group relative
                   ${isActive 
-                    ? "bg-orange-500/10 text-orange-600 dark:text-orange-500" 
+                    ? "bg-blue-600/10 text-blue-700 dark:text-blue-600"
                     : "text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:text-neutral-900 dark:hover:text-white"}
                   ${isCollapsed ? "justify-center" : ""}
                 `}
@@ -108,7 +108,7 @@ export function SidebarNew({
               >
                 <item.icon
                   size={20}
-                  className={`shrink-0 ${isActive ? "text-orange-600 dark:text-orange-500" : "group-hover:text-neutral-900 dark:group-hover:text-white"}`}
+                  className={`shrink-0 ${isActive ? "text-blue-700 dark:text-blue-600" : "group-hover:text-neutral-900 dark:group-hover:text-white"}`}
                 />
                 {!isCollapsed && (
                   <span className="font-medium text-sm">
@@ -116,7 +116,7 @@ export function SidebarNew({
                   </span>
                 )}
                 {isActive && !isCollapsed && (
-                  <div className="absolute right-0 w-1 h-5 bg-orange-500 rounded-l-full" />
+                  <div className="absolute right-0 w-1 h-5 bg-blue-600 rounded-l-full" />
                 )}
               </Link>
             );
@@ -137,7 +137,7 @@ export function SidebarNew({
                       src={`https://i.pravatar.cc/150?u=${member.seed}`}
                       alt={member.name}
                       fill
-                      className="rounded-full object-cover ring-2 ring-white dark:ring-neutral-950 border border-gray-200 dark:border-neutral-800 group-hover:ring-orange-500/20 transition-all"
+                      className="rounded-full object-cover ring-2 ring-white dark:ring-neutral-950 border border-gray-200 dark:border-neutral-800 group-hover:ring-blue-600/20 transition-all"
                     />
                     <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-white dark:border-neutral-900" />
                   </div>
@@ -146,7 +146,7 @@ export function SidebarNew({
                   </div>
                 </div>
               ))}
-              <button className="w-7 h-7 rounded-full bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center border border-gray-200 dark:border-neutral-800 text-neutral-500 hover:text-orange-500 transition-colors">
+              <button className="w-7 h-7 rounded-full bg-neutral-100 dark:bg-neutral-900 flex items-center justify-center border border-gray-200 dark:border-neutral-800 text-neutral-500 hover:text-blue-600 transition-colors">
                 <Plus size={14} />
               </button>
             </div>
@@ -156,13 +156,13 @@ export function SidebarNew({
         {/* Footer Area */}
         <div className="p-4 space-y-2 border-t border-gray-100 dark:border-neutral-900 shrink-0">
           {!isCollapsed && (
-            <button className="flex items-center justify-center gap-2 w-full py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold text-sm transition-all shadow-lg shadow-orange-500/20 active:scale-95">
+            <button className="flex items-center justify-center gap-2 w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold text-sm transition-all shadow-lg shadow-blue-600/20 active:scale-95">
               <Plus size={18} />
               New Project
             </button>
           )}
           {isCollapsed && (
-            <button className="flex items-center justify-center w-10 h-10 bg-orange-500 hover:bg-orange-600 text-white rounded-xl mx-auto shadow-lg shadow-orange-500/20 transition-all active:scale-95">
+            <button className="flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-xl mx-auto shadow-lg shadow-blue-600/20 transition-all active:scale-95">
               <Plus size={20} />
             </button>
           )}

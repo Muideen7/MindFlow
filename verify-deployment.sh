@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Nexus Deployment Verification Script
+# MindFlow Deployment Verification Script
 # Run this before deploying to ensure everything is ready
 
-echo "🚀 Nexus Deployment Verification"
+echo "🚀 MindFlow Deployment Verification"
 echo "=================================="
 echo ""
 

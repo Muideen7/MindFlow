@@ -1,8 +1,8 @@
-# Nexus - Modern Team Collaboration Platform
+# MindFlow - Modern Team Collaboration Platform
 
 <div align="center">
 
-![Nexus](https://img.shields.io/badge/Nexus-Team%20Collaboration-orange)
+![MindFlow](https://img.shields.io/badge/MindFlow-Team%20Collaboration-orange)
 ![Next.js](https://img.shields.io/badge/Next.js-16.1.6-black)
 ![React](https://img.shields.io/badge/React-19.0.0-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.7.2-blue)
@@ -10,7 +10,7 @@
 
 A production-ready SaaS platform for team collaboration and productivity. Built with modern technologies and best practices.
 
-[Live Demo](https://nexus.vercel.app) • [Documentation](./DEPLOYMENT.md) • [Report Bug](https://github.com/Muideen7/nexus/issues)
+[Live Demo](https://mindflow.vercel.app) • [Documentation](./DEPLOYMENT.md) • [Report Bug](https://github.com/Muideen7/mindflow/issues)
 
 </div>
 
@@ -45,7 +45,7 @@ A production-ready SaaS platform for team collaboration and productivity. Built 
 - ✅ Yellow accent color scheme
 
 ### Design System
-- ✅ Nexus design language
+- ✅ MindFlow design language
 - ✅ Glassmorphism components
 - ✅ Consistent color tokens
 - ✅ Responsive layouts
@@ -93,8 +93,8 @@ A production-ready SaaS platform for team collaboration and productivity. Built 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Muideen7/nexus.git
-cd nexus
+git clone https://github.com/Muideen7/mindflow.git
+cd mindflow
 ```
 
 ### 2. Install Dependencies
@@ -135,7 +135,7 @@ Visit [http://localhost:3000](http://localhost:3000)
 ## 📁 Project Structure
 
 ```
-nexus/
+mindflow/
 ├── app/
 │   ├── (auth)/              # Authentication pages
 │   │   ├── login/
@@ -190,7 +190,7 @@ SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your-email@gmail.com
 SMTP_PASSWORD=your-app-password
-EMAIL_FROM=Nexus <noreply@nexus.com>
+EMAIL_FROM=MindFlow <noreply@mindflow.com>
 
 # Public URLs
 NEXT_PUBLIC_APP_URL=http://localhost:3000
@@ -367,7 +367,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 📞 Support
 
-For support, email support@nexus.com or open an issue on GitHub.
+For support, email support@mindflow.com or open an issue on GitHub.
 
 ---
 
@@ -387,6 +387,6 @@ For support, email support@nexus.com or open an issue on GitHub.
 
 Made with ❤️ by FrontendGeek
 
-[⬆ Back to top](#nexus---modern-team-collaboration-platform)
+[⬆ Back to top](#mindflow---modern-team-collaboration-platform)
 
 </div>

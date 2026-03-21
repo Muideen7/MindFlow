@@ -18,7 +18,7 @@ export default function SettingsPage() {
           {/* Theme Toggle - Using Reusable Component */}
           <div className="flex items-center justify-between p-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-orange-100 dark:bg-orange-950/40 rounded-2xl text-orange-600">
+              <div className="p-3 bg-blue-100 dark:bg-blue-950/40 rounded-2xl text-blue-700">
                 {theme === "dark" ? <Moon size={20} /> : <Sun size={20} />}
               </div>
               <div>
@@ -41,7 +41,7 @@ export default function SettingsPage() {
                 <p className="text-xs opacity-50 text-light-text dark:text-dark-text">Alerts for task deadlines</p>
               </div>
             </div>
-            <div className="w-12 h-6 rounded-full bg-orange-600 relative">
+            <div className="w-12 h-6 rounded-full bg-blue-700 relative">
               <div className="absolute top-1 left-7 w-4 h-4 bg-white rounded-full" />
             </div>
           </div>

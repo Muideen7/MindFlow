@@ -15,7 +15,7 @@ export default function CalendarPage() {
       </div>
 
       <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-gray-100 dark:border-neutral-800 shadow-sm p-8 min-h-[600px] flex flex-col items-center justify-center text-center">
-        <div className="w-16 h-16 bg-orange-100 dark:bg-orange-950/20 text-orange-600 rounded-full flex items-center justify-center mb-6">
+        <div className="w-16 h-16 bg-blue-100 dark:bg-blue-950/20 text-blue-700 rounded-full flex items-center justify-center mb-6">
           <CalendarIcon size={32} />
         </div>
         <h2 className="text-xl font-bold text-neutral-900 dark:text-white">Interactive Calendar View</h2>

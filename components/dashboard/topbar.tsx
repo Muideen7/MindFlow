@@ -26,7 +26,7 @@ export function Topbar({ setSidebarOpen }: TopbarProps) {
           <input
             type="text"
             placeholder="Search projects, tasks, or team members..."
-            className="w-full pl-10 pr-4 py-2 bg-neutral-100 dark:bg-neutral-900 border-none rounded-xl text-sm focus:ring-2 focus:ring-orange-500/20 transition-all outline-none text-neutral-900 dark:text-white"
+            className="w-full pl-10 pr-4 py-2 bg-neutral-100 dark:bg-neutral-900 border-none rounded-xl text-sm focus:ring-2 focus:ring-blue-600/20 transition-all outline-none text-neutral-900 dark:text-white"
           />
         </div>
       </div>
@@ -34,7 +34,7 @@ export function Topbar({ setSidebarOpen }: TopbarProps) {
       <div className="flex items-center gap-3">
         <button className="p-2 text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-900 rounded-lg transition-colors relative">
           <Bell size={20} />
-          <span className="absolute top-2 right-2 w-2 h-2 bg-orange-500 rounded-full border-2 border-white dark:border-neutral-950" />
+          <span className="absolute top-2 right-2 w-2 h-2 bg-blue-600 rounded-full border-2 border-white dark:border-neutral-950" />
         </button>
         
         <div className="h-8 w-[1px] bg-gray-200 dark:border-neutral-900 mx-2" />
@@ -53,7 +53,7 @@ export function Topbar({ setSidebarOpen }: TopbarProps) {
               src={`https://i.pravatar.cc/150?u=${session?.user?.name || "default"}`}
               alt="Profile"
               fill
-              className="object-cover rounded-full ring-2 ring-orange-500/10 cursor-pointer hover:ring-orange-500/30 transition-all"
+              className="object-cover rounded-full ring-2 ring-blue-600/10 cursor-pointer hover:ring-blue-600/30 transition-all"
             />
             <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-neutral-950" />
           </div>

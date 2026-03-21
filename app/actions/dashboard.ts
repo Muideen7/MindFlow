@@ -52,7 +52,7 @@ export async function getKanbanData() {
     { 
       id: "inprogress", 
       title: "In Progress", 
-      color: "bg-orange-500",
+      color: "bg-blue-600",
       tasks: [
         { id: 3, title: "Develop Auth Flow", priority: "High", date: "Mar 10", tags: ["Security"] },
         { id: 4, title: "User Interview Analysis", priority: "Low", date: "Mar 08", tags: ["Research"] },
@@ -76,6 +76,6 @@ export async function getTeamActivity() {
     { id: 2, user: "Bob", action: "set a deadline for tomorrow", project: "Project Beta", time: "25m ago", avatar: "https://i.pravatar.cc/150?u=Bob" },
     { id: 3, user: "Charlie", action: "approved the design of", project: "Landing Page", time: "1h ago", avatar: "https://i.pravatar.cc/150?u=Charlie" },
     { id: 4, user: "David", action: "started a new sprint", project: "Q1 Roadmap", time: "2h ago", avatar: "https://i.pravatar.cc/150?u=David" },
-    { id: 5, user: "Alice", action: "invited 3 members to", project: "Nexus UI", time: "4h ago", avatar: "https://i.pravatar.cc/150?u=Alice" },
+    { id: 5, user: "Alice", action: "invited 3 members to", project: "MindFlow UI", time: "4h ago", avatar: "https://i.pravatar.cc/150?u=Alice" },
   ];
 }

@@ -29,7 +29,7 @@ export function ThemeProvider({
       enableSystem={enableSystem}
       // Pass the prop through here
       disableTransitionOnChange={disableTransitionOnChange}
-      storageKey="nexus-theme"
+      storageKey="mindflow-theme"
     >
       {children}
     </NextThemesProvider>

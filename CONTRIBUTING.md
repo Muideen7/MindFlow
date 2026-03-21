@@ -1,6 +1,6 @@
-# Contributing to Nexus
+# Contributing to MindFlow
 
-Thank you for your interest in contributing to Nexus! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to MindFlow! This document provides guidelines and instructions for contributing.
 
 ## Code of Conduct
 
@@ -14,8 +14,8 @@ Thank you for your interest in contributing to Nexus! This document provides gui
 ### 1. Fork the Repository
 
 ```bash
-git clone https://github.com/Muideen7/nexus.git
-cd nexus
+git clone https://github.com/Muideen7/mindflow.git
+cd mindflow
 ```
 
 ### 2. Create a Feature Branch
@@ -201,4 +201,4 @@ By contributing, you agree that your contributions will be licensed under the MI
 
 ---
 
-Thank you for contributing to Nexus! 🚀
+Thank you for contributing to MindFlow! 🚀

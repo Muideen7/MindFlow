@@ -13,7 +13,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nexus-nextjs.vercel.app"),
+  metadataBase: new URL("https://mindflow-nextjs.vercel.app"),
   title: {
     default: "MindFlow | Intelligent Task Manager",
     template: "%s | MindFlow",

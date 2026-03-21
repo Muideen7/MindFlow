@@ -20,7 +20,7 @@ const COLUMNS = [
   { 
     id: "inprogress", 
     title: "In Progress", 
-    color: "bg-orange-500",
+    color: "bg-blue-600",
     tasks: [
       { id: 3, title: "Develop Auth Flow", priority: "High", date: "Mar 10", tags: ["Security"] },
       { id: 4, title: "User Interview Analysis", priority: "Low", date: "Mar 08", tags: ["Research"] },
@@ -76,7 +76,7 @@ export function KanbanBoard({ data }: { data: any[] }) {
                 <div className="flex justify-between items-start mb-3">
                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-tighter
                     ${task.priority === "High" ? "bg-red-50 text-red-500 dark:bg-red-950/20" : 
-                      task.priority === "Medium" ? "bg-orange-50 text-orange-500 dark:bg-orange-950/20" : 
+                      task.priority === "Medium" ? "bg-blue-50 text-blue-600 dark:bg-blue-950/20" :
                       "bg-blue-50 text-blue-500 dark:bg-blue-950/20"}`}>
                     {task.priority}
                   </span>
@@ -85,7 +85,7 @@ export function KanbanBoard({ data }: { data: any[] }) {
                   </button>
                 </div>
                 
-                <h5 className="text-sm font-semibold text-neutral-900 dark:text-white mb-3 group-hover:text-orange-500 transition-colors">
+                <h5 className="text-sm font-semibold text-neutral-900 dark:text-white mb-3 group-hover:text-blue-600 transition-colors">
                   {task.title}
                 </h5>
 
@@ -140,7 +140,7 @@ export function KanbanBoard({ data }: { data: any[] }) {
                   <div className="flex items-center gap-2 mb-2">
                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-tighter
                       ${selectedTask.priority === "High" ? "bg-red-50 text-red-500 dark:bg-red-950/20" : 
-                        selectedTask.priority === "Medium" ? "bg-orange-50 text-orange-500 dark:bg-orange-950/20" : 
+                        selectedTask.priority === "Medium" ? "bg-blue-50 text-blue-600 dark:bg-blue-950/20" :
                         "bg-blue-50 text-blue-500 dark:bg-blue-950/20"}`}>
                       {selectedTask.priority} Priority
                     </span>
@@ -157,14 +157,14 @@ export function KanbanBoard({ data }: { data: any[] }) {
                   <div className="space-y-1">
                     <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Due Date</p>
                     <div className="flex items-center gap-2 text-sm font-semibold">
-                      <Calendar size={14} className="text-orange-500" />
+                      <Calendar size={14} className="text-blue-600" />
                       {selectedTask.date}
                     </div>
                   </div>
                   <div className="space-y-1">
                     <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Estimate</p>
                     <div className="flex items-center gap-2 text-sm font-semibold">
-                      <Clock size={14} className="text-orange-500" />
+                      <Clock size={14} className="text-blue-600" />
                       4-6 hours
                     </div>
                   </div>
@@ -201,7 +201,7 @@ export function KanbanBoard({ data }: { data: any[] }) {
                   </button>
                   <button 
                     onClick={closeModal}
-                    className="flex-1 py-2.5 bg-orange-500 text-white rounded-xl font-bold text-sm hover:bg-orange-600 transition-all shadow-lg shadow-orange-500/20"
+                    className="flex-1 py-2.5 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20"
                   >
                     Close
                   </button>

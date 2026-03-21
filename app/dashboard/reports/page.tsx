@@ -8,7 +8,7 @@ export default function ReportsPage() {
           <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">Reports</h1>
           <p className="text-sm text-neutral-500 mt-1">Generate and export detailed project summaries.</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 bg-orange-500 text-white rounded-xl text-sm font-bold shadow-lg shadow-orange-500/20">
+        <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-xl text-sm font-bold shadow-lg shadow-blue-600/20">
           <Plus className="hidden" />
           Generate Report
         </button>
@@ -16,7 +16,7 @@ export default function ReportsPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white dark:bg-neutral-900 p-8 rounded-2xl border border-gray-100 dark:border-neutral-800 shadow-sm">
-          <FileText className="text-orange-500 mb-6" size={40} />
+          <FileText className="text-blue-600 mb-6" size={40} />
           <h3 className="text-lg font-bold">Monthly Summary</h3>
           <p className="text-sm text-neutral-500 mt-2 mb-6">Detailed overview of last month&apos;s productivity and task completion rates.</p>
           <div className="flex gap-4">
