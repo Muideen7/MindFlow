@@ -1,245 +1,90 @@
 "use client";
 
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, MapPin } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 
-export default function Contact() {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    company: "",
-    message: "",
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        company: "",
-        message: "",
-      });
-      alert("Thank you for your message! We'll get back to you soon.");
-    }, 1500);
-  };
-
-  const contactInfo = [
-    {
-      label: "Email",
-      value: "hello@nexus.com",
-      icon: Mail,
-    },
-    {
-      label: "Office",
-      value: "123 Innovation Drive\nSan Francisco, CA 94105",
-      icon: MapPin,
-    },
-  ];
-
-  const fadeUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (delay = 0) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        delay,
-        ease: "easeOut",
-      },
-    }),
-  };
-
+export default function CTA() {
+  const [openId, setOpenId] = useState<number | null>(null);
   return (
-    <section id="contact" className="section py-32 md:py-40">
-      <div className="section-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* LEFT COLUMN: Contact Info */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            {/* Badge */}
-            <motion.div
-              custom={0}
-              variants={fadeUp}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-light-accent/10 dark:bg-dark-accent/10 text-light-accent dark:text-dark-accent rounded-full text-xs font-semibold uppercase tracking-wider border border-light-accent/20 dark:border-dark-accent/20"
-            >
-              Get in touch
-            </motion.div>
-
-            {/* Main Heading */}
-            <motion.h2
-              custom={0.1}
-              variants={fadeUp}
-              className="text-4xl md:text-5xl font-bold leading-tight font-display"
-            >
-              Let's start a{" "}
-              <span className="text-light-accent dark:text-dark-accent italic">
-                conversation
-              </span>
-            </motion.h2>
-
-            {/* Description */}
-            <motion.p
-              custom={0.2}
-              variants={fadeUp}
-              className="text-lg text-light-text/70 dark:text-dark-text/70 leading-relaxed max-w-md"
-            >
-              Have questions about Nexus? Want to see a demo? Our team is here
-              to help you find the perfect solution for your needs.
-            </motion.p>
-
-            {/* Contact Details */}
-            <motion.div
-              custom={0.3}
-              variants={fadeUp}
-              className="space-y-6 pt-4"
-            >
-              {contactInfo.map((info) => {
-                const Icon = info.icon;
-                return (
-                  <div key={info.label} className="flex gap-4">
-                    <div className="flex-shrink-0">
-                      <Icon
-                        size={24}
-                        className="text-light-accent dark:text-dark-accent"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-light-text dark:text-dark-text mb-1">
-                        {info.label}
-                      </h3>
-                      <p className="text-light-text/70 dark:text-dark-text/70 whitespace-pre-line">
-                        {info.value}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </motion.div>
-          </motion.div>
-
-          {/* RIGHT COLUMN: Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-light-bg-secondary dark:bg-dark-bg-secondary rounded-2xl p-8 md:p-10 border border-light-border dark:border-dark-border"
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name Row */}
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-semibold text-light-text dark:text-dark-text mb-2">
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    placeholder="John"
-                    required
-                    className="w-full px-4 py-3 rounded-lg bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border text-light-text dark:text-dark-text placeholder-light-text/50 dark:placeholder-dark-text/50 focus:outline-none focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent transition-all"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-light-text dark:text-dark-text mb-2">
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    placeholder="Doe"
-                    required
-                    className="w-full px-4 py-3 rounded-lg bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border text-light-text dark:text-dark-text placeholder-light-text/50 dark:placeholder-dark-text/50 focus:outline-none focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* Email */}
-              <div>
-                <label className="block text-sm font-semibold text-light-text dark:text-dark-text mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="john@company.com"
-                  required
-                  className="w-full px-4 py-3 rounded-lg bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border text-light-text dark:text-dark-text placeholder-light-text/50 dark:placeholder-dark-text/50 focus:outline-none focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent transition-all"
-                />
-              </div>
-
-              {/* Company */}
-              <div>
-                <label className="block text-sm font-semibold text-light-text dark:text-dark-text mb-2">
-                  Company
-                </label>
-                <input
-                  type="text"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  placeholder="Your company name"
-                  className="w-full px-4 py-3 rounded-lg bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border text-light-text dark:text-dark-text placeholder-light-text/50 dark:placeholder-dark-text/50 focus:outline-none focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent transition-all"
-                />
-              </div>
-
-              {/* Message */}
-              <div>
-                <label className="block text-sm font-semibold text-light-text dark:text-dark-text mb-2">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Tell us about your project..."
-                  rows={5}
-                  required
-                  className="w-full px-4 py-3 rounded-lg bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border text-light-text dark:text-dark-text placeholder-light-text/50 dark:placeholder-dark-text/50 focus:outline-none focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent transition-all resize-none"
-                />
-              </div>
-
-              {/* Submit Button */}
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                disabled={isSubmitting}
-                type="submit"
-                className="w-full btn-primary py-3 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+    <section className="py-24 bg-[#F2F2F0]">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="bg-[#1A1A1A] rounded-[3rem] p-16 md:p-24 text-center text-white overflow-hidden relative">
+          <div className="relative z-10">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
+              Ready to transform your<br />team's workflow?
+            </h2>
+            <p className="text-gray-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto">
+              Join 10,000+ teams who are already using MindFlow to bring clarity to their chaos.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                href="/signup" 
+                className="bg-white text-black px-8 py-4 rounded-2xl font-bold text-lg hover:bg-gray-100 transition-all"
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </motion.button>
-            </form>
-          </motion.div>
+                Start Free Trial
+              </Link>
+              <Link 
+                href="/contact" 
+                className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white/20 transition-all"
+              >
+                Schedule Demo
+              </Link>
+            </div>
+          </div>
+          
+          {/* Background Decorative Pixels */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#FF7A8E]/10 to-[#C89CFE]/10 blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[#8A9DFD]/10 to-[#C89CFE]/10 blur-3xl" />
+        </div>
+
+        {/* Professional Q&A Accordion */}
+        <div className="mt-40 max-w-3xl mx-auto pb-32">
+          <div className="text-center mb-16">
+             <h3 className="font-zcool text-4xl md:text-5xl text-black tracking-tightest mb-4">Frequently Asked Questions</h3>
+             <p className="text-black/40 text-xs font-bold uppercase tracking-widest">Everything you need to know about the product.</p>
+          </div>
+          
+          <div className="flex flex-col gap-4">
+             {[
+                { q: "Is there a free trial available?", a: "Yes, you can try all premium features completely free for 14 days. No credit card required to start." },
+                { q: "Can I manage multiple teams?", a: "Absolutely. Our Team and Enterprise plans allow you to create unlimited isolated workspaces under a single billing account." },
+                { q: "Do you offer integrations?", a: "We natively sync with Slack, Notion, GitHub, Trello, and Linear out of the box. Zapier support is also available." },
+                { q: "What happens to my data if I cancel?", a: "You have full ownership of your data. If you cancel, you will have a 30-day window to export everything securely as JSON or CSV before it is permanently wiped." },
+             ].map((faq, i) => (
+                <div 
+                   key={i} 
+                   className="bg-white border border-black/5 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                   onClick={() => setOpenId(openId === i ? null : i)}
+                >
+                   <div className="p-6 md:p-8 flex items-center justify-between">
+                      <h4 className="text-lg md:text-xl font-bold text-black">{faq.q}</h4>
+                      <motion.div 
+                        initial={false}
+                        animate={{ rotate: openId === i ? 180 : 0 }}
+                        className="text-black/30"
+                      >
+                         {openId === i ? <Minus size={20} /> : <Plus size={20} />}
+                      </motion.div>
+                   </div>
+                   <AnimatePresence>
+                     {openId === i && (
+                        <motion.div
+                           initial={{ height: 0, opacity: 0 }}
+                           animate={{ height: "auto", opacity: 1 }}
+                           exit={{ height: 0, opacity: 0 }}
+                           transition={{ duration: 0.3, ease: "easeInOut" }}
+                        >
+                           <div className="px-6 md:px-8 pb-8 pt-0 text-black/60 font-medium leading-relaxed">
+                              {faq.a}
+                           </div>
+                        </motion.div>
+                     )}
+                   </AnimatePresence>
+                </div>
+             ))}
+          </div>
         </div>
       </div>
     </section>

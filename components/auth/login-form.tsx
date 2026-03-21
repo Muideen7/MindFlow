@@ -56,7 +56,7 @@ export function LoginForm() {
       <div className="space-y-1">
         <label
           htmlFor="email"
-          className="block text-sm font-semibold text-gray-700 dark:text-gray-300"
+          className="block text-xs font-bold uppercase tracking-widest text-black/60 mb-2"
         >
           Email Address
         </label>
@@ -66,23 +66,23 @@ export function LoginForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="block w-full rounded-xl border border-gray-200 bg-gray-50/50 dark:bg-neutral-950 dark:border-gray-800 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all outline-none"
+          className="block w-full rounded-2xl border border-black/10 bg-white px-5 py-4 text-black placeholder-black/30 focus:border-black focus:ring-0 transition-all outline-none"
           placeholder="name@company.com"
           disabled={isLoading}
         />
       </div>
 
       <div className="space-y-1">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mb-2">
           <label
             htmlFor="password"
-            className="block text-sm font-semibold text-gray-700 dark:text-gray-300"
+            className="block text-xs font-bold uppercase tracking-widest text-black/60"
           >
             Password
           </label>
           <Link
             href="/forgot-password"
-            className="text-xs font-bold text-orange-600 hover:text-orange-700"
+            className="text-[10px] font-bold uppercase tracking-widest text-black hover:text-black/60 transition-colors"
           >
             Forgot?
           </Link>
@@ -94,14 +94,14 @@ export function LoginForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="block w-full rounded-xl border border-gray-200 bg-gray-50/50 dark:bg-neutral-950 dark:border-gray-800 px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 transition-all outline-none pr-10"
+            className="block w-full rounded-2xl border border-black/10 bg-white px-5 py-4 text-black placeholder-black/30 focus:border-black focus:ring-0 transition-all outline-none pr-12"
             placeholder="••••••••"
             disabled={isLoading}
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+            className="absolute right-5 top-1/2 -translate-y-1/2 text-black/40 hover:text-black transition-colors"
           >
             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
           </button>
@@ -111,15 +111,15 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full rounded-xl bg-orange-600 py-3 text-white font-bold hover:bg-orange-700 shadow-lg shadow-orange-600/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+        className="w-full rounded-2xl bg-[#2C2C2C] py-4 text-white font-bold text-xs uppercase tracking-widest hover:bg-black shadow-xl active:scale-[0.98] transition-all flex items-center justify-center gap-3 mt-4"
       >
         {isLoading ? (
           <>
-            <Loader2 className="h-5 w-5 animate-spin" />
-            Signing in...
+            <Loader2 className="h-4 w-4 animate-spin" />
+            Authenticating...
           </>
         ) : (
-          "Sign in to Dashboard"
+          "Sign In To Workspace"
         )}
       </button>
     </form>

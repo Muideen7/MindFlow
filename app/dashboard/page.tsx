@@ -29,8 +29,8 @@ export default async function DashboardPage() {
     <div className="space-y-8 pb-12">
       {/* Heading */}
       <div>
-        <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">Project Dashboard</h1>
-        <p className="text-sm text-neutral-500 mt-1">Monitor your team productivity and project health in real-time.</p>
+        <h1 className="text-3xl font-black text-black tracking-tightest">Project Dashboard</h1>
+        <p className="text-[10px] uppercase font-bold text-black/40 tracking-widest mt-2">Monitor your team productivity and project health in real-time.</p>
       </div>
 
       {/* Top Section: Stat Cards */}
@@ -49,11 +49,11 @@ export default async function DashboardPage() {
       {/* Bottom Section: Kanban & Activity */}
       <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
         <div className="xl:col-span-3 space-y-6">
-          <div className="flex justify-between items-center">
-            <h3 className="text-lg font-bold text-neutral-900 dark:text-white uppercase tracking-wider">
+          <div className="flex justify-between items-center border-b border-black/5 pb-4">
+            <h3 className="text-sm font-bold text-black uppercase tracking-widest">
               Project Board
             </h3>
-            <button className="text-sm font-bold text-orange-500 hover:text-orange-600 transition-colors">
+            <button className="text-[10px] font-bold text-black/40 uppercase tracking-widest hover:text-black transition-colors">
               View All Tasks
             </button>
           </div>

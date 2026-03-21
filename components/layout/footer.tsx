@@ -65,26 +65,26 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-light-bg dark:bg-dark-bg border-t border-light-border dark:border-dark-border">
+    <footer className="bg-[#1A1A1A] text-white">
       <div className="section-container py-12 md:py-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-x-12 gap-y-16 mb-16 lg:justify-items-center">
           {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="sm:col-span-2 lg:col-span-1 text-center sm:text-left"
+            className="col-span-2 lg:col-span-2 text-center lg:text-left"
           >
-            <h3 className="font-display text-2xl font-bold text-light-text dark:text-dark-text mb-3">
-              Nexus
+            <h3 className="font-bold text-3xl text-white mb-4">
+              MindFlow
             </h3>
-            <p className="text-light-text/70 dark:text-dark-text/70 text-sm leading-relaxed max-w-xs mx-auto sm:mx-0">
+            <p className="text-white/60 text-base leading-relaxed max-w-sm mx-auto lg:mx-0">
               Building the future of team collaboration, one feature at a time.
             </p>
             {/* Social Links */}
-            <div className="flex items-center gap-3 mt-6 justify-center sm:justify-start">
+            <div className="flex items-center gap-4 mt-8 justify-center lg:justify-start">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <motion.a
                   key={label}
@@ -94,9 +94,9 @@ export default function Footer() {
                   aria-label={label}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-lg bg-light-border dark:bg-dark-border hover:bg-light-accent hover:text-white dark:hover:bg-dark-accent dark:hover:text-white flex items-center justify-center transition-all duration-300"
+                  className="w-12 h-12 rounded-xl bg-white/10 hover:bg-white hover:text-black flex items-center justify-center transition-all duration-300"
                 >
-                  <Icon size={18} />
+                  <Icon size={20} />
                 </motion.a>
               ))}
             </div>
@@ -110,17 +110,17 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="text-center sm:text-left"
+              className="text-center lg:text-left lg:min-w-[120px]"
             >
-              <h4 className="font-semibold mb-4 text-light-text dark:text-dark-text text-xs uppercase tracking-widest">
+              <h4 className="font-bold mb-6 text-white text-xs uppercase tracking-widest opacity-40">
                 {column.title}
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {column.links.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-light-text/70 dark:text-dark-text/70 hover:text-light-accent dark:hover:text-dark-accent transition-colors text-sm"
+                      className="text-white/60 hover:text-white transition-colors text-sm font-medium"
                     >
                       {link.label}
                     </Link>
@@ -132,23 +132,23 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-light-border dark:border-dark-border pt-8 md:pt-10 mt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="border-t border-white/10 pt-8 md:pt-10 mt-8 flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Copyright & Built By */}
-          <div className="flex flex-col items-center md:flex-row md:items-center gap-4 text-sm text-light-text/70 dark:text-dark-text/70 text-center md:text-left">
-            <p>© {currentYear} Nexus. All rights reserved.</p>
+          <div className="flex flex-col items-center md:flex-row md:items-center gap-4 text-sm text-white/40 text-center md:text-left">
+            <p>© {currentYear} MindFlow. All rights reserved.</p>
           </div>
 
           {/* Legal Links */}
           <div className="flex items-center justify-center md:justify-end gap-6">
             <Link
               href="#privacy"
-              className="text-sm text-light-text/70 dark:text-dark-text/70 hover:text-light-accent dark:hover:text-dark-accent transition-colors"
+              className="text-sm text-white/40 hover:text-white transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
               href="#terms"
-              className="text-sm text-light-text/70 dark:text-dark-text/70 hover:text-light-accent dark:hover:text-dark-accent transition-colors"
+              className="text-sm text-white/40 hover:text-white transition-colors"
             >
               Terms of Service
             </Link>

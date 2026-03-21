@@ -51,9 +51,9 @@ export function Sidebar({
           {!isCollapsed && (
             <Link
               href="/dashboard"
-              className="font-bold gradient-text text-xl animate-in fade-in duration-300"
+              className="font-bold text-black text-xl tracking-tight animate-in fade-in duration-300"
             >
-              Nexus
+              MindFlow
             </Link>
           )}
           <button
