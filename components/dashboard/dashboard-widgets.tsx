@@ -73,8 +73,8 @@ export function StatCards({ stats }: { stats: any[] }) {
 }
 
 const DONUT_DATA = [
-  { name: "Completed", value: 75, color: "#f97316" },
-  { name: "Remaining", value: 25, color: "#fca5a5" },
+  { name: "Completed", value: 75, color: "#8B5CF6" },
+  { name: "Remaining", value: 25, color: "#DDD6FE" },
 ];
 
 const DONUT_DATA_2 = [
@@ -90,9 +90,9 @@ export function ProjectProgress({ data }: { data: any[] }) {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h3 className="text-lg font-bold text-neutral-900 dark:text-white">Project Progress</h3>
-            <p className="text-sm text-neutral-400">Weekly efficiency overview</p>
+            <p className="text-sm text-neutral-400 dark:text-neutral-500">Weekly efficiency overview</p>
           </div>
-          <select className="bg-neutral-100 dark:bg-neutral-800 border-none rounded-lg text-xs font-bold px-3 py-1.5 outline-none">
+          <select className="bg-neutral-100 dark:bg-neutral-800 border-none rounded-lg text-xs font-bold px-3 py-1.5 outline-none text-neutral-900 dark:text-white transition-colors cursor-pointer">
             <option>Last 7 Days</option>
             <option>Last 30 Days</option>
           </select>
@@ -124,9 +124,9 @@ export function ProjectProgress({ data }: { data: any[] }) {
                 <Line 
                   type="monotone" 
                   dataKey="progress" 
-                  stroke="#f97316" 
+                  stroke="#8B5CF6" 
                   strokeWidth={3} 
-                  dot={{ r: 4, fill: "#f97316", strokeWidth: 2, stroke: "#fff" }}
+                  dot={{ r: 4, fill: "#8B5CF6", strokeWidth: 2, stroke: "#fff" }}
                   activeDot={{ r: 6 }}
                 />
               </LineChart>
@@ -216,13 +216,13 @@ export function UpcomingDeadlines({ data }: { data: any[] }) {
         <div className="h-24 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={data}>
-              <Bar dataKey="value" fill="#fca5a5" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="value" fill="#DDD6FE" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
         <div className="flex justify-between items-center">
           <span className="text-xs font-bold text-neutral-400">Milestones reaching</span>
-          <span className="text-sm font-bold text-orange-500">3/4 Done</span>
+          <span className="text-sm font-bold text-violet-500">3/4 Done</span>
         </div>
       </div>
     </div>

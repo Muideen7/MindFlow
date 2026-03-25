@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://nexus.vercel.app";
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://nexus-nextjs.vercel.app";
 
 export const metadata: Metadata = {
   title: "MindFlow - Modern Team Collaboration & Productivity Platform",

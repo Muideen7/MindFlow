@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { Zap, Target, Shield, Layers, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { Zap, ArrowRight } from "lucide-react";
 
 // True PixelArt Vector background to match the "Digital Trail" from screenshot
 const PixelCloud = () => {
@@ -99,7 +99,7 @@ export default function Hero() {
     <section className="relative pt-44 pb-32 overflow-hidden bg-[#F2F2F0]">
       <PixelCloud />
       <div className="section-container relative z-10 w-full max-w-7xl mx-auto px-6">
-        <div className="max-w-2xl text-left md:ml-32 lg:ml-40 pb-10 mb-64 md:mb-[32rem] pt-10 relative z-20">
+        <div className="max-w-3xl text-center mx-auto pb-10 mb-16 pt-10 relative z-20">
           <motion.h1 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -114,14 +114,47 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="max-w-sm text-black/60 text-[15px] font-medium leading-relaxed"
+            className="max-w-sm text-black/60 text-[15px] font-medium leading-relaxed mb-10 mx-auto"
           >
             An intelligent task manager that prioritizes, organizes, and automates your workflow.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-30 w-full"
+          >
+            <Link href="/signup" className="w-full sm:w-auto">
+               <button className="h-14 px-10 w-full bg-[#2C2C2C] text-white rounded-full font-bold uppercase tracking-widest text-[11px] hover:bg-[#1A1A1A] transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-black/10 group overflow-hidden relative">
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Get Started — free
+                    <Zap size={14} className="fill-white/20 text-white" />
+                  </span>
+                  <style jsx>{`
+                    @keyframes shimmer {
+                      from { transform: translateX(-100%); }
+                      to { transform: translateX(100%); }
+                    }
+                    .animate-shimmer {
+                      animation: shimmer 2s infinite;
+                    }
+                  `}</style>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 -translate-x-full group-hover:animate-shimmer" />
+               </button>
+            </Link>
+            
+            <Link href="#stats" className="w-full sm:w-auto">
+               <button className="h-14 px-10 w-full bg-white border border-black/5 text-[#2C2C2C] rounded-full font-bold uppercase tracking-widest text-[11px] flex items-center justify-center gap-2 hover:bg-black/5 transition-all hover:scale-105 active:scale-95">
+                  View Demo
+                  <ArrowRight size={16} className="text-black/40 group-hover:translate-x-1 transition-transform" />
+               </button>
+            </Link>
+          </motion.div>
         </div>
 
         {/* Hero Card Container */}
-        <div className="bg-[#2C2C2C] p-3 rounded-xl md:rounded-[2rem] shadow-[0_40px_80px_rgba(0,0,0,0.1)] overflow-hidden">
+        <div id="stats" className="bg-[#2C2C2C] p-3 rounded-xl md:rounded-[2rem] shadow-[0_40px_80px_rgba(0,0,0,0.1)] overflow-hidden">
            {/* Tier 1: Logo Carousel */}
            <div className="py-10 border-b border-white/[0.08] relative overflow-hidden group">
               <div className="flex gap-20 md:gap-32 animate-marquee whitespace-nowrap px-10">
@@ -159,8 +192,6 @@ export default function Hero() {
               </div>
            </div>
         </div>
-
-
       </div>
     </section>
   );

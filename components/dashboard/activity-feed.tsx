@@ -7,7 +7,7 @@ const ACTIVITIES = [
   { id: 2, user: "Bob", action: "set a deadline for tomorrow", project: "Project Beta", time: "25m ago", avatar: "https://i.pravatar.cc/150?u=Bob" },
   { id: 3, user: "Charlie", action: "approved the design of", project: "Landing Page", time: "1h ago", avatar: "https://i.pravatar.cc/150?u=Charlie" },
   { id: 4, user: "David", action: "started a new sprint", project: "Q1 Roadmap", time: "2h ago", avatar: "https://i.pravatar.cc/150?u=David" },
-  { id: 5, user: "Alice", action: "invited 3 members to", project: "Nexus UI", time: "4h ago", avatar: "https://i.pravatar.cc/150?u=Alice" },
+  { id: 5, user: "Alice", action: "invited 3 members to", project: "MindFlow UI", time: "4h ago", avatar: "https://i.pravatar.cc/150?u=Alice" },
 ];
 
 export function ActivityFeed({ data }: { data: any[] }) {
@@ -24,13 +24,13 @@ export function ActivityFeed({ data }: { data: any[] }) {
                 src={`https://i.pravatar.cc/150?u=${activity.user}`}
                 alt={activity.user}
                 fill
-                className="rounded-full object-cover ring-2 ring-transparent group-hover:ring-orange-500/20 transition-all"
+                className="rounded-full object-cover ring-2 ring-transparent group-hover:ring-violet-500/20 transition-all"
               />
               <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-white dark:border-neutral-900" />
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-xs text-neutral-500 leading-snug">
-                <span className="font-bold text-neutral-900 dark:text-white group-hover:text-orange-500 transition-colors">
+                <span className="font-bold text-neutral-900 dark:text-white group-hover:text-violet-500 transition-colors">
                   {activity.user}
                 </span>{" "}
                 {activity.action}{" "}

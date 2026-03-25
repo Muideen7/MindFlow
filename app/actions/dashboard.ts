@@ -6,6 +6,9 @@ import {
   CheckCircle2, 
   Clock 
 } from "lucide-react";
+import { prisma } from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 // In a real app, these would fetch from Prisma/Postgres
 export async function getDashboardStats() {
@@ -39,35 +42,43 @@ export async function getDeadlines() {
 }
 
 export async function getKanbanData() {
-  return [
-    { 
-      id: "todo", 
-      title: "To Do", 
-      color: "bg-blue-500",
-      tasks: [
-        { id: 1, title: "Design Landing Page", priority: "High", date: "Mar 12", tags: ["Design", "UI"] },
-        { id: 2, title: "Setup Database Schema", priority: "Medium", date: "Mar 15", tags: ["Backend"] },
-      ]
-    },
-    { 
-      id: "inprogress", 
-      title: "In Progress", 
-      color: "bg-orange-500",
-      tasks: [
-        { id: 3, title: "Develop Auth Flow", priority: "High", date: "Mar 10", tags: ["Security"] },
-        { id: 4, title: "User Interview Analysis", priority: "Low", date: "Mar 08", tags: ["Research"] },
-      ]
-    },
-    { 
-      id: "completed", 
-      title: "Completed", 
-      color: "bg-green-500",
-      tasks: [
-        { id: 5, title: "Initial Project Setup", priority: "Medium", date: "Feb 28", tags: ["System"] },
-        { id: 6, title: "Domain Registration", priority: "Low", date: "Feb 26", tags: ["Web"] },
-      ]
-    },
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.email) return [];
+
+  const user = await prisma.user.findUnique({
+    where: { email: session.user.email },
+    select: { id: true }
+  });
+
+  if (!user) return [];
+
+  const allTasks = await prisma.task.findMany({
+    where: { userId: user.id },
+    orderBy: { createdAt: 'desc' }
+  });
+
+  const columns = [
+    { id: "todo", title: "To Do", color: "bg-blue-500", tasks: [] as any[] },
+    { id: "inprogress", title: "In Progress", color: "bg-violet-500", tasks: [] as any[] },
+    { id: "completed", title: "Completed", color: "bg-green-500", tasks: [] as any[] },
   ];
+
+  allTasks.forEach(task => {
+    const taskData = {
+      id: task.id,
+      title: task.title,
+      priority: task.priority.charAt(0).toUpperCase() + task.priority.slice(1),
+      date: new Date(task.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+      tags: [task.priority], // Default tag as priority
+      status: task.status
+    };
+
+    if (task.status === "todo") columns[0].tasks.push(taskData);
+    else if (task.status === "in-progress") columns[1].tasks.push(taskData);
+    else if (task.status === "completed") columns[2].tasks.push(taskData);
+  });
+
+  return columns;
 }
 
 export async function getTeamActivity() {
@@ -76,6 +87,6 @@ export async function getTeamActivity() {
     { id: 2, user: "Bob", action: "set a deadline for tomorrow", project: "Project Beta", time: "25m ago", avatar: "https://i.pravatar.cc/150?u=Bob" },
     { id: 3, user: "Charlie", action: "approved the design of", project: "Landing Page", time: "1h ago", avatar: "https://i.pravatar.cc/150?u=Charlie" },
     { id: 4, user: "David", action: "started a new sprint", project: "Q1 Roadmap", time: "2h ago", avatar: "https://i.pravatar.cc/150?u=David" },
-    { id: 5, user: "Alice", action: "invited 3 members to", project: "Nexus UI", time: "4h ago", avatar: "https://i.pravatar.cc/150?u=Alice" },
+    { id: 5, user: "Alice", action: "invited 3 members to", project: "MindFlow UI", time: "4h ago", avatar: "https://i.pravatar.cc/150?u=Alice" },
   ];
 }

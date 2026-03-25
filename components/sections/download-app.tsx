@@ -7,13 +7,7 @@ export default function DownloadApp() {
     <section id="download" className="py-32 bg-[#F2F2F0] overflow-hidden scroll-mt-20">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Global Section Header */}
-        <div className="text-center mb-24 flex flex-col items-center">
-           <h2 className="font-zcool text-4xl md:text-5xl text-black mb-4 tracking-tight">
-             A Seamless Ecosystem For Your Devices
-           </h2>
-           <p className="text-black/40 text-xs font-bold uppercase tracking-widest">Cross-Platform Sync</p>
-        </div>
+
 
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
           

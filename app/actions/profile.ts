@@ -8,6 +8,7 @@ import { revalidatePath } from "next/cache";
 export async function updateProfile(formData: {
   name: string;
   status: string;
+  image?: string;
 }) {
   const session = await getServerSession(authOptions);
 
@@ -21,6 +22,7 @@ export async function updateProfile(formData: {
       data: {
         name: formData.name,
         status: formData.status,
+        image: formData.image,
       },
     });
 

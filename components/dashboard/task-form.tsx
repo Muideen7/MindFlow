@@ -55,7 +55,7 @@ export function TaskForm({ initialData, onSuccess }: TaskFormProps) {
           type="text"
           value={formData.title}
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-          className="w-full px-4 py-3 bg-neutral-100 dark:bg-neutral-800 border-none rounded-xl text-sm font-semibold focus:ring-2 focus:ring-orange-500 outline-none transition-all"
+          className="w-full px-4 py-3 bg-neutral-100 dark:bg-neutral-800 border-none rounded-xl text-sm font-semibold focus:ring-2 focus:ring-violet-500/20 outline-none transition-all"
           placeholder="What needs to be done?"
         />
       </div>
@@ -66,7 +66,7 @@ export function TaskForm({ initialData, onSuccess }: TaskFormProps) {
           rows={3}
           value={formData.description}
           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-          className="w-full px-4 py-3 bg-neutral-100 dark:bg-neutral-800 border-none rounded-xl text-sm font-semibold focus:ring-2 focus:ring-orange-500 outline-none transition-all resize-none"
+          className="w-full px-4 py-3 bg-neutral-100 dark:bg-neutral-800 border-none rounded-xl text-sm font-semibold focus:ring-2 focus:ring-violet-500/20 outline-none transition-all resize-none"
           placeholder="Add more details..."
         />
       </div>
@@ -77,7 +77,7 @@ export function TaskForm({ initialData, onSuccess }: TaskFormProps) {
           <select
             value={formData.priority}
             onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
-            className="w-full px-4 py-3 bg-neutral-100 dark:bg-neutral-800 border-none rounded-xl text-sm font-semibold focus:ring-2 focus:ring-orange-500 outline-none transition-all appearance-none"
+            className="w-full px-4 py-3 bg-neutral-100 dark:bg-neutral-800 border-none rounded-xl text-sm font-semibold focus:ring-2 focus:ring-violet-500/20 outline-none transition-all appearance-none"
           >
             <option>Low</option>
             <option>Medium</option>
@@ -90,7 +90,7 @@ export function TaskForm({ initialData, onSuccess }: TaskFormProps) {
           <select
             value={formData.status}
             onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-            className="w-full px-4 py-3 bg-neutral-100 dark:bg-neutral-800 border-none rounded-xl text-sm font-semibold focus:ring-2 focus:ring-orange-500 outline-none transition-all appearance-none"
+            className="w-full px-4 py-3 bg-neutral-100 dark:bg-neutral-800 border-none rounded-xl text-sm font-semibold focus:ring-2 focus:ring-violet-500/20 outline-none transition-all appearance-none"
           >
             <option>To Do</option>
             <option>In Progress</option>
@@ -103,7 +103,7 @@ export function TaskForm({ initialData, onSuccess }: TaskFormProps) {
         <button
           disabled={loading}
           type="submit"
-          className="flex-1 py-3 bg-orange-500 text-white rounded-xl font-bold text-sm hover:bg-orange-600 transition-all shadow-lg shadow-orange-500/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="flex-1 py-3 bg-violet-500 text-white rounded-xl font-bold text-sm hover:bg-violet-600 transition-all shadow-lg shadow-violet-500/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {loading && <Loader2 size={16} className="animate-spin" />}
           {initialData ? "Update Task" : "Create Task"}
