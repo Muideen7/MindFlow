@@ -56,7 +56,7 @@ export function LoginForm() {
       <div className="space-y-1">
         <label
           htmlFor="email"
-          className="block text-xs font-bold uppercase tracking-widest text-black/60 mb-2"
+          className="block text-xs font-bold uppercase tracking-widest text-black/60 dark:text-white/60 mb-2"
         >
           Email Address
         </label>
@@ -76,7 +76,7 @@ export function LoginForm() {
         <div className="flex justify-between items-center mb-2">
           <label
             htmlFor="password"
-            className="block text-xs font-bold uppercase tracking-widest text-black/60"
+            className="block text-xs font-bold uppercase tracking-widest text-black/60 dark:text-white/60"
           >
             Password
           </label>

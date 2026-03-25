@@ -10,6 +10,7 @@ export default function ProfilePage() {
 
   // Local state for form fields
   const [name, setName] = useState("");
+  const [profileImage, setProfileImage] = useState("");
   const [status, setStatus] = useState("Online");
   const [isPending, setIsPending] = useState(false);
   const [message, setMessage] = useState<{
@@ -21,7 +22,7 @@ export default function ProfilePage() {
   useEffect(() => {
     if (session?.user) {
       setName(session.user.name || "");
-      // If you added status to your session/user object, sync it here
+      setProfileImage(session.user.image || "");
     }
   }, [session]);
 
@@ -31,7 +32,7 @@ export default function ProfilePage() {
     setMessage(null);
 
     try {
-      const result = await updateProfile({ name, status });
+      const result = await updateProfile({ name, status, image: profileImage });
 
       if (result.success) {
         // 1. Update the NextAuth session cache locally
@@ -40,6 +41,7 @@ export default function ProfilePage() {
           user: {
             ...session?.user,
             name: name,
+            image: profileImage,
           },
         });
 
@@ -57,7 +59,7 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="max-w-4xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div>
         <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
           Your Profile
@@ -74,10 +76,10 @@ export default function ProfilePage() {
         >
           {/* Avatar Section */}
           <div className="relative group mx-auto md:mx-0">
-            <div className="w-32 h-32 rounded-3xl overflow-hidden border-4 border-orange-500/10 bg-slate-100 dark:bg-slate-800">
+            <div className="w-32 h-32 rounded-3xl overflow-hidden border-4 border-violet-500/10 bg-slate-100 dark:bg-slate-800 transition-all group-hover:border-violet-500/30">
               <img
                 src={
-                  session?.user?.image ||
+                  profileImage ||
                   `https://i.pravatar.cc/150?u=${name || "user"}`
                 }
                 alt="avatar"
@@ -86,9 +88,24 @@ export default function ProfilePage() {
             </div>
             <button
               type="button"
+              onClick={() => document.getElementById('avatar-upload')?.click()}
               className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-3xl text-white"
             >
               <Camera size={24} />
+              <input 
+                id="avatar-upload"
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onloadend = () => setProfileImage(reader.result as string);
+                    reader.readAsDataURL(file);
+                  }
+                }}
+              />
             </button>
             <p className="text-[10px] text-center mt-3 font-bold opacity-40 uppercase tracking-tighter">
               Click to upload
@@ -107,7 +124,7 @@ export default function ProfilePage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter your name"
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 focus:ring-2 focus:ring-orange-500 outline-none transition-all font-medium"
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 focus:ring-2 focus:ring-violet-500/20 outline-none transition-all font-medium"
                 />
               </div>
 
@@ -118,7 +135,7 @@ export default function ProfilePage() {
                 <select
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 focus:ring-2 focus:ring-orange-500 outline-none transition-all font-medium appearance-none"
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 focus:ring-2 focus:ring-violet-500/20 outline-none transition-all font-medium appearance-none"
                 >
                   <option value="Online">🟢 Online</option>
                   <option value="Away">🟡 Away</option>
@@ -133,7 +150,7 @@ export default function ProfilePage() {
               <button
                 type="submit"
                 disabled={isPending}
-                className="bg-orange-600 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-orange-700 hover:shadow-lg hover:shadow-orange-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-violet-600 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-violet-700 hover:shadow-lg hover:shadow-violet-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
               >
                 {isPending ? (
                   <Loader2 size={18} className="animate-spin" />

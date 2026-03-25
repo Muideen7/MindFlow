@@ -26,8 +26,8 @@ export default function Navigation() {
        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 h-20">
           {/* Logo */}
           <Link href="/" className="text-2xl font-bold tracking-tightest group flex items-center gap-3 text-black">
-             <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center p-2 group-hover:rotate-12 transition-transform">
-                <div className="w-full h-full bg-white opacity-40 rounded-sm" />
+             <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center p-1.5 group-hover:rotate-12 transition-transform">
+                <div className="w-full h-full bg-white opacity-40 rounded-[4px]" />
              </div>
              MindFlow
           </Link>

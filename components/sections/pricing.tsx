@@ -68,7 +68,7 @@ export default function Pricing() {
     <section id="pricing" className="py-40 bg-[#F2F2F0]">
       <div className="section-container">
         <div className="text-center mb-16 flex flex-col items-center border-none">
-          <h2 className="font-zcool text-4xl md:text-5xl text-black mb-4 tracking-tight">
+          <h2 className="font-zcool text-4xl md:text-5xl text-black dark:text-black mb-4 tracking-tight">
             Transparent Pricing For All Businesses
           </h2>
           <p className="text-black/40 text-xs font-bold uppercase tracking-widest mb-12">Flexible Plans</p>
@@ -96,7 +96,7 @@ export default function Pricing() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              className={`p-8 lg:p-10 flex flex-col items-start text-left relative group transition-all duration-500 min-h-[600px] rounded-none shadow-[0_30px_60px_rgba(0,0,0,0.03)] border border-black/[0.03] ${plan.color}`}
+              className={`p-8 lg:p-10 flex flex-col items-start text-left relative group transition-all duration-500 min-h-[600px] rounded-none shadow-[0_30px_60px_rgba(0,0,0,0.03)] border border-black/[0.03] ${plan.color} ${plan.color.includes('bg-white') ? 'text-black' : ''}`}
             >
               {plan.name === "Team Plan" && (
                 <div className="absolute top-0 right-0 w-16 h-16 pointer-events-none">
@@ -151,18 +151,6 @@ export default function Pricing() {
           ))}
         </div>
 
-        <div className="mt-40 pt-12 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-8">
-           <div className="flex items-center gap-10 opacity-20 hover:opacity-100 transition-opacity grayscale order-2 md:order-1">
-              {["Slack", "Notion", "Trello"].map(tool => (
-                <span key={tool} className="text-2xl font-bold tracking-tightest">{tool}</span>
-              ))}
-           </div>
-           
-           <div className="flex items-center gap-8 order-1 md:order-2">
-              <span className="text-3xl font-bold text-black tracking-tightest">Integrations</span>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-black/40 max-w-[120px]">Works With Your Team Suite</p>
-           </div>
-        </div>
       </div>
     </section>
   );

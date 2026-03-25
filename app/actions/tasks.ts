@@ -97,3 +97,35 @@ export async function deleteTask(id: string) {
     return { success: false, error: "Database error" };
   }
 }
+
+export async function searchGlobal(query: string) {
+  if (!query || query.length < 2) return [];
+  
+  const userId = await getUserId();
+  if (!userId) return [];
+
+  // Search tasks
+  const tasks = await prisma.task.findMany({
+    where: {
+      userId,
+      OR: [
+        { title: { contains: query, mode: 'insensitive' } },
+        { description: { contains: query, mode: 'insensitive' } },
+      ],
+    },
+    take: 5,
+    orderBy: { createdAt: 'desc' }
+  });
+
+  // Simulated projects for now as there's no Project model yet
+  const simulatedProjects = [
+    { id: 'p1', title: 'MindFlow UI', type: 'Project' },
+    { id: 'p2', title: 'Marketing Campaign', type: 'Project' },
+    { id: 'p3', title: 'Q1 Roadmap', type: 'Project' },
+  ].filter(p => p.title.toLowerCase().includes(query.toLowerCase()));
+
+  return [
+    ...simulatedProjects.map(p => ({ ...p, category: 'project' })),
+    ...tasks.map(t => ({ id: t.id, title: t.title, type: 'Task', category: 'task', status: t.status }))
+  ];
+}

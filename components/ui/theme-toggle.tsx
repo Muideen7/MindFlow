@@ -56,7 +56,7 @@ export default function ThemeToggle({
         className="flex items-center justify-center w-10 h-10 rounded-xl bg-white dark:bg-dark-card border border-light-border dark:border-dark-border text-light-text dark:text-dark-text hover:border-light-accent dark:hover:border-dark-accent transition-all duration-300 shadow-sm"
         aria-label="Toggle theme"
       >
-        {theme === "light" && <Sun size={20} className="text-orange-500" />}
+        {theme === "light" && <Sun size={20} className="text-violet-500" />}
         {theme === "dark" && <Moon size={20} className="text-blue-400" />}
         {theme === "system" && <Monitor size={20} className="text-slate-500" />}
       </button>
