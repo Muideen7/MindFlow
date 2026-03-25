@@ -83,7 +83,7 @@ export const SignupForm = memo(function SignupForm() {
       )}
 
       <div>
-        <label className="block text-xs font-bold uppercase tracking-widest text-black/60 mb-2">
+        <label className="block text-xs font-bold uppercase tracking-widest text-black/60 dark:text-white/60 mb-2">
           Full Name
         </label>
         <input
@@ -98,7 +98,7 @@ export const SignupForm = memo(function SignupForm() {
       </div>
 
       <div>
-        <label className="block text-xs font-bold uppercase tracking-widest text-black/60 mb-2">
+        <label className="block text-xs font-bold uppercase tracking-widest text-black/60 dark:text-white/60 mb-2">
           Email
         </label>
         <input
@@ -113,7 +113,7 @@ export const SignupForm = memo(function SignupForm() {
       </div>
 
       <div>
-        <label className="block text-xs font-bold uppercase tracking-widest text-black/60 mb-2">
+        <label className="block text-xs font-bold uppercase tracking-widest text-black/60 dark:text-white/60 mb-2">
           Password
         </label>
         <div className="relative">
@@ -137,7 +137,7 @@ export const SignupForm = memo(function SignupForm() {
       </div>
 
       <div>
-        <label className="block text-xs font-bold uppercase tracking-widest text-black/60 mb-2">
+        <label className="block text-xs font-bold uppercase tracking-widest text-black/60 dark:text-white/60 mb-2">
           Confirm Password
         </label>
         <div className="relative">

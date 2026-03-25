@@ -30,7 +30,7 @@ export default function FloatingCTA() {
   return (
     <AnimatePresence>
       {isVisible && (
-          <div className="fixed bottom-10 right-10 z-[100] hidden md:block">
+          <div className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[100]">
             <motion.div
               initial={{ scale: 0, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}

@@ -177,13 +177,13 @@ export default function Features() {
            </div>
         </div>
 
-        {/* Productivity Arc Section */}
-        <div id="productivity" className="flex flex-col items-center justify-center text-center pt-24 pb-0 relative scroll-mt-32">
-           <div className="relative w-full max-w-6xl mx-auto h-[600px] overflow-hidden flex justify-center">
+        {/* Productivity Circle Section */}
+        <div id="productivity" className="flex flex-col items-center justify-center text-center pt-32 pb-32 relative scroll-mt-32">
+           <div className="relative w-full max-w-6xl mx-auto h-[1000px] flex justify-center items-center">
               
               {/* Spinning Wheel */}
               <motion.div 
-                 className="absolute top-24 w-[900px] h-[900px] rounded-full border border-black/15 flex items-center justify-center"
+                 className="absolute w-[800px] h-[800px] md:w-[900px] md:h-[900px] rounded-full border border-black/10 flex items-center justify-center"
                  animate={{ rotate: rotation }}
                  transition={{ duration: 1.5, delay: 0.2, ease: "easeInOut" }}
               >
@@ -192,13 +192,13 @@ export default function Features() {
                     return (
                       <div 
                         key={node.id}
-                        className="absolute w-48 h-48 flex items-center justify-center"
+                        className="absolute w-40 h-40 md:w-48 md:h-48 flex items-center justify-center"
                         style={{
-                           transform: `rotate(${angle}deg) translateY(-450px)` // Distance to the circle border
+                           transform: `rotate(${angle}deg) translateY(-450px)` // Offset from circle center
                         }}
                         onMouseEnter={() => handleHover(i)}
                       >
-                         {/* Counter-rotation to keep the text upright */}
+                         {/* Counter-rotation */}
                          <motion.div 
                            className="w-full h-full rounded-full flex items-center justify-center cursor-pointer"
                            animate={{ rotate: -(rotation + angle) }}
@@ -206,19 +206,18 @@ export default function Features() {
                          >
                             {activeNode === i ? (
                                <div className="relative w-full h-full flex items-center justify-center bg-[#F2F2F0] rounded-full scale-110 shadow-2xl shadow-black/5 transition-all">
-                                  {/* Dashed outer ring */}
                                   <div className="absolute inset-2 rounded-full border border-dashed border-black/30 animate-[spin_10s_linear_infinite]" />
                                   <div className="w-[75%] h-[75%] rounded-full bg-gradient-to-br from-[#FF7A8E] via-[#D4A1FF] to-[#8A9DFD] flex items-center justify-center">
                                      <div className="w-[75%] h-[75%] rounded-full bg-[#F2F2F0] flex flex-col items-center justify-center gap-1">
-                                        <span className="text-2xl font-black text-black leading-none">{node.num}</span>
-                                        <span className="text-[10px] font-bold text-black">{node.title}</span>
+                                        <span className="text-xl md:text-2xl font-black text-black leading-none">{node.num}</span>
+                                        <span className="text-[10px] font-bold text-black uppercase tracking-widest">{node.title}</span>
                                      </div>
                                   </div>
                                </div>
                             ) : (
-                               <div className="w-full h-full bg-[#F2F2F0] rounded-full flex flex-col items-center justify-center opacity-40 hover:opacity-80 transition-opacity gap-1">
-                                   <span className="text-2xl font-bold text-black">{node.num}</span>
-                                   <span className="text-[10px] font-bold text-black">{node.title}</span>
+                               <div className="w-full h-full bg-white/40 backdrop-blur-sm rounded-full flex flex-col items-center justify-center opacity-40 hover:opacity-80 transition-all gap-1 border border-black/5">
+                                   <span className="text-xl md:text-2xl font-bold text-black">{node.num}</span>
+                                   <span className="text-[10px] font-bold text-black uppercase tracking-widest">{node.title}</span>
                                </div>
                             )}
                          </motion.div>
@@ -227,17 +226,17 @@ export default function Features() {
                  })}
               </motion.div>
 
-              {/* Centered Productivity Text */}
-              <div className="absolute bottom-10 flex flex-col items-center justify-center z-10 pointer-events-auto">
-                 <div className="bg-[#F2F2F0] px-12 py-6 rounded-[3rem] flex flex-col items-center shadow-[0_-40px_80px_#F2F2F0]">
-                   <h3 className="font-zcool text-4xl md:text-5xl text-black mb-10 tracking-tightest">Your AI Productivity</h3>
-                   <div className="flex flex-wrap items-center justify-center gap-3 max-w-[400px]">
+              {/* Centered Productivity Content - Inside the wheel */}
+              <div className="relative flex flex-col items-center justify-center z-10 pointer-events-auto">
+                 <div className="px-12 py-6 flex flex-col items-center">
+                   <h3 className="font-zcool text-4xl md:text-5xl lg:text-6xl text-black mb-10 tracking-tightest">Your AI Productivity</h3>
+                   <div className="flex flex-wrap items-center justify-center gap-3 max-w-[500px]">
                       {bubbles.map((box, i) => (
                          <div 
                             key={i} 
-                            className="flex items-center gap-1.5 bg-white/50 border border-black/5 px-4 py-2 rounded-full text-black/60 shadow-sm"
+                            className="flex items-center gap-2 bg-white/80 backdrop-blur-md border border-black/5 px-4 py-2 rounded-full text-black/60 shadow-sm hover:scale-105 transition-transform"
                          >
-                            <span className="text-[12px] font-bold block pb-0.5">+</span>
+                            <span className="text-[12px] font-bold block pb-0.5 text-[#C89CFE]">+</span>
                             <span className="text-[10px] font-bold text-black tracking-widest uppercase">
                               {box.label}
                             </span>
