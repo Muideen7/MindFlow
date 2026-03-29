@@ -1,11 +1,12 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { MoreHorizontal, Plus, Calendar, Tag, Clock, User as UserIcon } from "lucide-react";
 import { Modal } from "@/components/ui/modal";
 import { TaskForm } from "@/components/dashboard/task-form";
-import Image from "next/image";
+import { UserAvatar } from "@/components/ui/user-avatar";
 
 const COLUMNS = [
   { 
@@ -38,6 +39,7 @@ const COLUMNS = [
 ];
 
 export function KanbanBoard({ data }: { data: any[] }) {
+  const { data: session } = useSession();
   const [selectedTask, setSelectedTask] = useState<any>(null);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -104,12 +106,12 @@ export function KanbanBoard({ data }: { data: any[] }) {
                     {task.date}
                   </div>
                   <div className="flex -space-x-1.5">
-                    <div className="relative w-5 h-5 rounded-full overflow-hidden border border-white dark:border-neutral-950">
-                      <Image src={`https://i.pravatar.cc/150?u=${task.id}`} fill className="object-cover" alt="Avatar" />
-                    </div>
-                    <div className="relative w-5 h-5 rounded-full overflow-hidden border border-white dark:border-neutral-950">
-                      <Image src={`https://i.pravatar.cc/150?u=${task.id}a`} fill className="object-cover" alt="Avatar" />
-                    </div>
+                    <UserAvatar 
+                      name={session?.user?.name}
+                      image={session?.user?.image}
+                      size="sm"
+                      className="w-5 h-5 border border-white dark:border-neutral-950"
+                    />
                   </div>
                 </div>
               </motion.div>
@@ -173,15 +175,12 @@ export function KanbanBoard({ data }: { data: any[] }) {
                 <div className="space-y-2">
                   <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Assignees</p>
                   <div className="flex items-center gap-2">
-                    <div className="flex -space-x-2">
-                      <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-white dark:border-neutral-900">
-                        <Image src={`https://i.pravatar.cc/150?u=${selectedTask.id}`} fill className="object-cover" alt="Avatar" />
-                      </div>
-                      <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-white dark:border-neutral-900">
-                        <Image src={`https://i.pravatar.cc/150?u=${selectedTask.id}a`} fill className="object-cover" alt="Avatar" />
-                      </div>
-                    </div>
-                    <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">+ 2 others</span>
+                    <UserAvatar 
+                      name={session?.user?.name}
+                      image={session?.user?.image}
+                      size="md"
+                    />
+                    <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">Assign To Me</span>
                   </div>
                 </div>
 

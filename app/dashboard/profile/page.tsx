@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { Camera, Save, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { UserAvatar } from "@/components/ui/user-avatar";
 import { updateProfile } from "@/app/actions/profile";
 
 export default function ProfilePage() {
@@ -76,22 +77,20 @@ export default function ProfilePage() {
         >
           {/* Avatar Section */}
           <div className="relative group mx-auto md:mx-0">
-            <div className="w-32 h-32 rounded-3xl overflow-hidden border-4 border-violet-500/10 bg-slate-100 dark:bg-slate-800 transition-all group-hover:border-violet-500/30">
-              <img
-                src={
-                  profileImage ||
-                  `https://i.pravatar.cc/150?u=${name || "user"}`
-                }
-                alt="avatar"
-                className="w-full h-full object-cover"
+            <div className="group-hover:scale-105 transition-transform duration-500">
+              <UserAvatar 
+                name={name}
+                image={profileImage}
+                size="xl"
+                className="border-4 border-violet-500/10 group-hover:border-violet-500/30 shadow-2xl"
               />
             </div>
             <button
               type="button"
               onClick={() => document.getElementById('avatar-upload')?.click()}
-              className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-3xl text-white"
+              className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-3xl text-white z-10"
             >
-              <Camera size={24} />
+              <Camera size={32} />
               <input 
                 id="avatar-upload"
                 type="file"

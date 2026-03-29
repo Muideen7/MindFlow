@@ -82,11 +82,15 @@ export async function getKanbanData() {
 }
 
 export async function getTeamActivity() {
+  const session = await getServerSession(authOptions);
+  const userName = session?.user?.name || "User";
+  const userImage = session?.user?.image || null;
+
   return [
-    { id: 1, user: "Alice", action: "uploaded a new document", project: "Project Alpha", time: "10m ago", avatar: "https://i.pravatar.cc/150?u=Alice" },
-    { id: 2, user: "Bob", action: "set a deadline for tomorrow", project: "Project Beta", time: "25m ago", avatar: "https://i.pravatar.cc/150?u=Bob" },
-    { id: 3, user: "Charlie", action: "approved the design of", project: "Landing Page", time: "1h ago", avatar: "https://i.pravatar.cc/150?u=Charlie" },
-    { id: 4, user: "David", action: "started a new sprint", project: "Q1 Roadmap", time: "2h ago", avatar: "https://i.pravatar.cc/150?u=David" },
-    { id: 5, user: "Alice", action: "invited 3 members to", project: "MindFlow UI", time: "4h ago", avatar: "https://i.pravatar.cc/150?u=Alice" },
+    { id: 1, user: userName, action: "updated a task in", project: "Sprint Planning", time: "10m ago", avatar: userImage },
+    { id: 2, user: "System", action: "synchronized the", project: "Cloud Workspace", time: "25m ago", avatar: null },
+    { id: 3, user: userName, action: "completed high priority", project: "Landing Page", time: "1h ago", avatar: userImage },
+    { id: 4, user: "System", action: "automated deployment for", project: "Production", time: "2h ago", avatar: null },
+    { id: 5, user: userName, action: "shared progress on", project: "MindFlow Dashboard", time: "4h ago", avatar: userImage },
   ];
 }
