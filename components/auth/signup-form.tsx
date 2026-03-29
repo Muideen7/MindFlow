@@ -62,10 +62,10 @@ export const SignupForm = memo(function SignupForm() {
         return;
       }
 
-      setToast({ message: "Account created! Redirecting...", type: "success" });
+      setToast({ message: "Registration successful! Redirecting to login...", type: "success" });
       setTimeout(() => {
-        router.push("/dashboard");
-      }, 1000);
+        router.push("/login");
+      }, 1500);
     } catch (err) {
       setToast({ message: "An error occurred. Please try again.", type: "error" });
       setIsLoading(false);
