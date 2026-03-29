@@ -43,13 +43,6 @@ export function SidebarNew({
     { name: "Reports", href: "/dashboard/reports", icon: FileText },
   ];
 
-  const teamMembers = [
-    { name: "Alice", seed: "Alice" },
-    { name: "Bob", seed: "Bob" },
-    { name: "Charlie", seed: "Charlie" },
-    { name: "David", seed: "David" },
-  ];
-
   return (
     <>
       <aside

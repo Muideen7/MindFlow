@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { UserAvatar } from "@/components/ui/user-avatar";
 
 const ACTIVITIES = [
   { id: 1, user: "Alice", action: "uploaded a new document", project: "Project Alpha", time: "10m ago", avatar: "https://i.pravatar.cc/150?u=Alice" },
@@ -19,14 +19,14 @@ export function ActivityFeed({ data }: { data: any[] }) {
       <div className="space-y-6">
         {data.map((activity: any) => (
           <div key={activity.id} className="flex gap-3 items-start group cursor-pointer">
-            <div className="relative shrink-0 w-8 h-8">
-              <Image
-                src={`https://i.pravatar.cc/150?u=${activity.user}`}
-                alt={activity.user}
-                fill
-                className="rounded-full object-cover ring-2 ring-transparent group-hover:ring-violet-500/20 transition-all"
+            <div className="relative shrink-0">
+              <UserAvatar 
+                name={activity.user}
+                image={activity.avatar}
+                size="sm"
+                className="ring-2 ring-transparent group-hover:ring-violet-500/20"
               />
-              <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-white dark:border-neutral-900" />
+              <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-white dark:border-neutral-900 shadow-sm" />
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-xs text-neutral-500 leading-snug">

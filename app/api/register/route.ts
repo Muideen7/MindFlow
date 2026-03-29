@@ -33,26 +33,12 @@ export async function POST(req: NextRequest) {
         name,
         email,
         password: hashedPassword,
+        emailVerified: new Date(),
       },
     });
-
-    const verificationToken = uuid();
-    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
-
-    await prisma.verificationToken.create({
-      data: {
-        email,
-        token: verificationToken,
-        expires: expiresAt,
-      },
-    });
-
-    const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/verify-email?token=${verificationToken}&email=${encodeURIComponent(email)}`;
-
-    await sendVerificationEmail(email, name, verificationUrl);
 
     return NextResponse.json(
-      { message: "User created. Check your email to verify." },
+      { message: "Account created successfully! You can now log in." },
       { status: 201 }
     );
   } catch (error) {

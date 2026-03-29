@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { Search, Bell, Menu, User, Settings, LogOut } from "lucide-react";
+import { UserAvatar } from "@/components/ui/user-avatar";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { signOut } from "next-auth/react";
@@ -146,14 +147,14 @@ export function Topbar({ setSidebarOpen }: TopbarProps) {
                 {session?.user?.email || "Workspace Member"}
               </p>
             </div>
-            <div className="relative w-10 h-10 transition-transform group-hover:scale-105 active:scale-95">
-              <Image
-                src={session?.user?.image || `https://i.pravatar.cc/150?u=${session?.user?.name || "default"}`}
-                alt="Profile"
-                fill
-                className="object-cover rounded-full ring-2 ring-violet-500/10 transition-all border-2 border-transparent group-hover:border-violet-500/20"
+            
+            <div className="relative group-hover:scale-105 active:scale-95 transition-transform">
+              <UserAvatar 
+                name={session?.user?.name}
+                image={session?.user?.image}
+                size="md"
               />
-              <div className="absolute bottom-0.5 right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-neutral-950" />
+              <div className="absolute bottom-0.5 right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-neutral-950 shadow-sm" />
             </div>
           </button>
 
