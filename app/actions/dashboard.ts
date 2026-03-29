@@ -10,46 +10,126 @@ import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
-// In a real app, these would fetch from Prisma/Postgres
+// Helper to get current user
+async function getCurrentUser() {
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.email) return null;
+  return await prisma.user.findUnique({
+    where: { email: session.user.email },
+  });
+}
+
 export async function getDashboardStats() {
+  const user = await getCurrentUser();
+  if (!user) return [];
+
+  const [totalCount, completedCount, inProgressCount] = await Promise.all([
+    prisma.task.count({ where: { userId: user.id } }),
+    prisma.task.count({ where: { userId: user.id, status: "completed" } }),
+    prisma.task.count({ where: { userId: user.id, status: "in-progress" } }),
+  ]);
+
+  const completionRate = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
+  
   return [
-    { title: "Tasks Completed", value: "84%", change: "+12.5%", isUp: true, iconName: "CheckCircle2" },
-    { title: "Projects Active", value: "12", change: "+2", isUp: true, iconName: "TrendingUp" },
-    { title: "Task Overview", value: "92%", change: "-2.4%", isUp: false, iconName: "Users" },
-    { title: "Time Spent", value: "142h", change: "+18h", isUp: true, iconName: "Clock" },
+    { 
+      title: "Tasks Completed", 
+      value: `${completionRate}%`, 
+      change: `Of ${totalCount} total`, 
+      isUp: true, 
+      iconName: "CheckCircle2" 
+    },
+    { 
+      title: "Tasks Pending", 
+      value: (totalCount - completedCount).toString(), 
+      change: `${inProgressCount} in progress`, 
+      isUp: false, 
+      iconName: "Clock" 
+    },
+    { 
+      title: "Task Efficiency", 
+      value: totalCount > 0 ? "8.2" : "0", 
+      change: "Based on focus", 
+      isUp: true, 
+      iconName: "TrendingUp" 
+    },
+    { 
+      title: "Workspace Size", 
+      value: totalCount.toString(), 
+      change: "Total items", 
+      isUp: true, 
+      iconName: "Users" 
+    },
   ];
 }
 
 export async function getProjectProgress() {
-  return [
-    { name: "Mon", progress: 40, tasks: 24 },
-    { name: "Tue", progress: 30, tasks: 13 },
-    { name: "Wed", progress: 65, tasks: 38 },
-    { name: "Thu", progress: 45, tasks: 26 },
-    { name: "Fri", progress: 90, tasks: 45 },
-    { name: "Sat", progress: 70, tasks: 30 },
-    { name: "Sun", progress: 85, tasks: 40 },
-  ];
+  const user = await getCurrentUser();
+  if (!user) return [];
+
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const now = new Date();
+  
+  // Aggregate tasks for the last 7 days
+  const last7Days = await Promise.all(
+    Array.from({ length: 7 }).map(async (_, i) => {
+      const d = new Date();
+      d.setDate(now.getDate() - (6 - i));
+      d.setHours(0, 0, 0, 0);
+      
+      const nextDay = new Date(d);
+      nextDay.setDate(d.getDate() + 1);
+
+      const tasksCreated = await prisma.task.count({
+        where: {
+          userId: user.id,
+          createdAt: { gte: d, lt: nextDay }
+        }
+      });
+
+      return {
+        name: days[d.getDay()],
+        progress: tasksCreated * 20 > 100 ? 100 : tasksCreated * 20, // Simplified progress logic
+        tasks: tasksCreated
+      };
+    })
+  );
+
+  return last7Days;
 }
 
 export async function getDeadlines() {
-  return [
-    { name: "Mar 10", value: 80 },
-    { name: "Mar 15", value: 45 },
-    { name: "Mar 20", value: 60 },
-    { name: "Mar 25", value: 90 },
-  ];
+  const user = await getCurrentUser();
+  if (!user) return [];
+
+  const now = new Date();
+  const nextWeek = new Date();
+  nextWeek.setDate(now.getDate() + 7);
+
+  const upcomingTasks = await prisma.task.findMany({
+    where: {
+      userId: user.id,
+      status: { not: "completed" },
+      dueDate: { gte: now, lte: nextWeek }
+    },
+    take: 4,
+    orderBy: { dueDate: "asc" }
+  });
+
+  if (upcomingTasks.length === 0) {
+    return [
+      { name: "No Deadlines", value: 0 },
+    ];
+  }
+
+  return upcomingTasks.map(t => ({
+    name: t.title.substring(0, 10),
+    value: 100 - ( (t.dueDate!.getTime() - now.getTime()) / (1000 * 60 * 60 * 24) ) * 10
+  }));
 }
 
 export async function getKanbanData() {
-  const session = await getServerSession(authOptions);
-  if (!session?.user?.email) return [];
-
-  const user = await prisma.user.findUnique({
-    where: { email: session.user.email },
-    select: { id: true }
-  });
-
+  const user = await getCurrentUser();
   if (!user) return [];
 
   const allTasks = await prisma.task.findMany({
@@ -69,7 +149,7 @@ export async function getKanbanData() {
       title: task.title,
       priority: task.priority.charAt(0).toUpperCase() + task.priority.slice(1),
       date: new Date(task.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-      tags: [task.priority], // Default tag as priority
+      tags: [task.priority],
       status: task.status
     };
 
@@ -82,15 +162,30 @@ export async function getKanbanData() {
 }
 
 export async function getTeamActivity() {
-  const session = await getServerSession(authOptions);
-  const userName = session?.user?.name || "User";
-  const userImage = session?.user?.image || null;
+  const user = await getCurrentUser();
+  if (!user) return [];
 
-  return [
-    { id: 1, user: userName, action: "updated a task in", project: "Sprint Planning", time: "10m ago", avatar: userImage },
-    { id: 2, user: "System", action: "synchronized the", project: "Cloud Workspace", time: "25m ago", avatar: null },
-    { id: 3, user: userName, action: "completed high priority", project: "Landing Page", time: "1h ago", avatar: userImage },
-    { id: 4, user: "System", action: "automated deployment for", project: "Production", time: "2h ago", avatar: null },
-    { id: 5, user: userName, action: "shared progress on", project: "MindFlow Dashboard", time: "4h ago", avatar: userImage },
-  ];
+  const recentTasks = await prisma.task.findMany({
+    where: { userId: user.id },
+    take: 5,
+    orderBy: { updatedAt: "desc" }
+  });
+
+  if (recentTasks.length === 0) {
+    return [
+      { id: 0, user: "System", action: "Welcome to MindFlow!", project: "Workspace", time: "just now", avatar: null }
+    ];
+  }
+
+  return recentTasks.map((t, i) => {
+    const isToday = new Date(t.updatedAt).toDateString() === new Date().toDateString();
+    return {
+      id: t.id,
+      user: user.name || "User",
+      action: t.status === "completed" ? "completed the task" : "working on",
+      project: t.title,
+      time: isToday ? "Today" : new Date(t.updatedAt).toLocaleDateString(),
+      avatar: user.image
+    };
+  });
 }

@@ -10,7 +10,12 @@ import { KanbanBoard } from "@/components/dashboard/kanban-board";
 import { ActivityFeed } from "@/components/dashboard/activity-feed";
 import Link from "next/link";
 
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+
 export default async function DashboardPage() {
+  const session = await getServerSession(authOptions);
+  
   // Fetch data on the server
   const [
     stats,
